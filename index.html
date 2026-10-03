@@ -1,7 +1,7 @@
 <!doctype html><html lang="cs"><head><meta name="description" content="Krátké úvahy o nástrojích, trendech a proměnách vzdělávání ve světě technologií."><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2048%2048%22%3E%3Crect%20width%3D%2248%22%20height%3D%2248%22%20rx%3D%2212%22%20fill%3D%22%232F63EB%22/%3E%3Cpolygon%20points%3D%2224%2C12%2043%2C20%2024%2C28%205%2C20%22%20fill%3D%22%23fff%22/%3E%3Cpath%20d%3D%22M12%2025.5v6.5c0%203%205.5%206%2012%206s12-3%2012-6v-6.5l-12%205.5z%22%20fill%3D%22%23fff%22%20fill-opacity%3D%22.88%22/%3E%3Cpath%20d%3D%22M41%2021.5v9%22%20stroke%3D%22%23fff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2241%22%20cy%3D%2232.5%22%20r%3D%222.3%22%20fill%3D%22%23fff%22/%3E%3C/svg%3E"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>EdTech blog</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #FFFFFF;
@@ -16,12 +16,14 @@
     --border: #E7E8EB;
     --danger: #C6402A;
     --danger-bg: #FBE7E2;
+    --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
     color-scheme: light;
   }
 
   * { box-sizing: border-box; }
   body {
-    background: var(--bg);
+    min-height: 100vh;
+    background: linear-gradient(180deg, #B7D6FB 0%, #DCE8F4 42%, #FAF0DE 100%) fixed;
     color: var(--ink);
     font-family: 'Bricolage Grotesque', system-ui, sans-serif;
     padding-inline: 20px;
@@ -33,23 +35,17 @@
   h1, h2, h3 { font-weight: 800; letter-spacing: -0.02em; text-wrap: balance; margin: 0; }
   .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
 
-  nav.topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
-    padding-block: 22px;
-    border-bottom: 1px solid var(--border);
-  }
-  .brand { display: flex; align-items: center; gap: 14px; font-size: 1.56rem; font-weight: 800; letter-spacing: -0.01em; }
-  .brand-logo { flex: 0 0 auto; width: 46px; height: 46px; display: block; }
-  .brand-text { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
-  .brand a { color: inherit; text-decoration: none; }
-  .brand-tagline { font-size: 1.01rem; font-weight: 400; letter-spacing: 0; color: var(--ink-soft); }
-  .nav-links { display: flex; align-items: center; gap: 26px; }
-  .nav-links a { color: var(--ink-soft); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+  nav.topbar { display: flex; flex-direction: column; align-items: center; gap: 24px; padding-block: 26px 4px; }
+  .nav-links { order: -1; align-self: flex-end; display: flex; align-items: center; gap: 26px; }
+  .nav-links a { color: #2B3A4F; text-decoration: none; font-weight: 500; font-size: 0.95rem; }
   .nav-links a:hover { color: var(--ink); }
+  .brand { display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; }
+  .brand-logo { flex: 0 0 auto; width: 64px; height: 64px; display: block; }
+  .brand-text { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .brand a { color: var(--ink); text-decoration: none; font-size: clamp(3rem, 8vw, 5rem); line-height: 1; letter-spacing: -0.045em; }
+  .brand-serif { font-family: var(--serif); font-weight: 400; }
+  .brand-sans { font-weight: 800; }
+  .brand-tagline { max-width: 560px; font-family: var(--serif); font-size: 1.2rem; line-height: 1.4; color: #2B3A4F; }
 
   .btn {
     font-family: inherit;
@@ -65,7 +61,7 @@
     transition: transform 0.08s ease, opacity 0.15s ease;
   }
   .btn:active { transform: scale(0.97); }
-  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-primary { background: #0A0A0A; color: #FFFFFF; border-radius: 3px; font-family: 'JetBrains Mono', ui-monospace, monospace; }
   .btn-primary:hover { opacity: 0.88; }
   .btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--border); }
   .btn-ghost:hover { border-color: var(--ink-soft); }
@@ -82,14 +78,14 @@
     padding: 8px 17px;
     border-radius: 999px;
     border: none;
-    background: var(--chip-bg);
+    background: rgba(255, 255, 255, 0.72);
     color: var(--chip-ink);
     cursor: pointer;
   }
-  .chip.active { background: var(--accent); color: var(--accent-ink); }
+  .chip.active { background: #0A0A0A; color: #FFFFFF; }
   .search {
     flex: 0 1 220px;
-    background: var(--chip-bg);
+    background: rgba(255, 255, 255, 0.72);
     border: 1.5px solid transparent;
     border-radius: 999px;
     padding: 8px 17px;
@@ -100,43 +96,52 @@
   .search::placeholder { color: var(--ink-soft); }
   .search:focus { outline: none; border-color: var(--accent); background: var(--bg); }
 
-  .post-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 48px; }
+  .post-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
   .post-item {
-    display: block;
-    align-self: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
     width: 100%;
     text-align: left;
-    background: none;
+    background: #FFFFFF;
     border: none;
-    border-top: 1px solid var(--border);
-    padding-block: 36px;
+    border-radius: 24px;
+    padding: 30px 32px;
     cursor: pointer;
     color: inherit;
     font-family: inherit;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
-  .post-item:nth-child(-n+2) { border-top: none; padding-top: 0; }
+  .post-item:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(30, 60, 100, 0.12); }
   @media (max-width: 720px) {
     .post-list { grid-template-columns: minmax(0, 1fr); }
-    .post-item:nth-child(2) { border-top: 1px solid var(--border); padding-top: 36px; }
+    .post-item { padding: 24px 22px; }
   }
-  .post-meta { color: var(--ink-soft); font-size: 0.92rem; margin-bottom: 12px; }
-  .post-title { font-size: 1.4rem; font-weight: 700; line-height: 1.3; margin-bottom: 10px; }
-  .post-item:hover .post-title { color: var(--accent); }
-  .post-excerpt { color: var(--ink-mute); font-size: 1.02rem; line-height: 1.6; margin-bottom: 16px; max-width: 680px; overflow-wrap: anywhere; }
+  .post-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 16px; }
+  .post-head-text { min-width: 0; }
+  .post-title { font-size: 1.25rem; font-weight: 700; line-height: 1.3; margin-bottom: 6px; overflow-wrap: anywhere; }
+  .post-meta { font-family: 'JetBrains Mono', ui-monospace, monospace; color: var(--ink-soft); font-size: 0.78rem; }
+  .post-cta { flex: 0 0 auto; background: #0A0A0A; color: #FFFFFF; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.82rem; padding: 10px 16px; border-radius: 3px; }
+  .post-excerpt { font-family: var(--serif); color: var(--ink); font-size: 1.08rem; line-height: 1.45; margin-bottom: 18px; overflow-wrap: anywhere; }
+  .post-item .tag-row { margin-top: auto; }
   .tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
   .tag { font-size: 0.8rem; font-weight: 500; color: var(--chip-ink); background: var(--chip-bg); padding: 5px 12px; border-radius: 999px; }
   .draft-badge { display: inline-block; background: var(--chip-bg); color: var(--accent); font-weight: 700; font-size: 0.72rem; padding: 4px 10px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.03em; margin-right: 8px; vertical-align: middle; }
 
   .empty {
-    border: 1px dashed var(--border);
-    border-radius: 12px;
+    background: #FFFFFF;
+    border: none;
+    border-radius: 24px;
     padding: 48px 24px;
     text-align: center;
     color: var(--ink-soft);
   }
   .empty h2 { font-size: 1.3rem; margin-bottom: 8px; color: var(--ink); }
 
-  .post-view { padding-block: 44px 0; }
+  .post-view { margin-top: 32px; padding: 36px 44px 48px; background: #FFFFFF; border-radius: 24px; }
+  .post-view .article-date, .post-view .article-title, .post-view .article-tags, .post-view .article-body { max-width: 760px; margin-inline: auto; }
+  @media (max-width: 720px) { .post-view { padding: 24px 20px 32px; } }
   .post-toprow { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; flex-wrap: wrap; gap: 10px; }
 
   .overlay {
@@ -202,12 +207,12 @@
   .color-swatch { width: 26px; height: 26px; border-radius: 6px; border: 1.5px solid var(--border); cursor: pointer; padding: 0; }
   .color-swatch:hover { border-color: var(--ink-soft); }
 
-  .article-date { color: var(--ink-soft); font-size: 0.92rem; margin-bottom: 10px; }
+  .article-date { font-family: 'JetBrains Mono', ui-monospace, monospace; color: var(--ink-soft); font-size: 0.8rem; margin-bottom: 10px; }
   .article-title { font-size: 1.9rem; margin-bottom: 12px; }
   .article-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 24px; }
-  .article-body { font-size: 1.02rem; }
+  .article-body { font-family: var(--serif); font-size: 1.2rem; line-height: 1.6; }
   .article-body p, .article-body div { margin: 0 0 1em; overflow-wrap: anywhere; }
-  .article-body h1, .article-body h2, .article-body h3 { margin: 1.2em 0 0.5em; font-weight: 700; }
+  .article-body h1, .article-body h2, .article-body h3 { margin: 1.2em 0 0.5em; font-weight: 700; font-family: 'Bricolage Grotesque', system-ui, sans-serif; }
   .article-body ul, .article-body ol { margin: 0 0 1em; padding-left: 1.3em; }
   .article-body blockquote { border-left: 3px solid var(--border); padding-left: 16px; margin: 1.2em 0; color: var(--accent); font-style: italic; }
   .article-body img { max-width: 100%; height: auto; border-radius: 8px; display: block; margin: 20px 0; }
@@ -244,7 +249,7 @@
         <path d="M41 21.5v9" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
         <circle cx="41" cy="32.5" r="2.3" fill="#FFFFFF"/>
       </svg>
-      <div class="brand-text"><a href="#" id="home-link">EdTech blog</a><span class="brand-tagline">Krátké úvahy o nástrojích, trendech a proměnách vzdělávání ve světě technologií.</span></div>
+      <div class="brand-text"><a href="#" id="home-link"><span class="brand-serif">EdTech</span> <span class="brand-sans">blog</span></a><span class="brand-tagline">Krátké úvahy o nástrojích, trendech a proměnách vzdělávání ve světě technologií.</span></div>
     </div>
     <div class="nav-links">
       <a href="#" id="articles-link">Články</a>
@@ -277,9 +282,9 @@
       "Výuka"
     ],
     "excerpt": "TED talk představuje, jak by AI měla podporovat hluboké učení dětí (a dospělých) místo toho, aby jen nabízela rychlé odpovědi, a vysvětluje, proč je \"mentální námaha\" klíčová pro trvalé porozumění.",
-    "content": "<div style=\"color: rgb(0, 0, 0)\"><h3 style=\"color: rgb(31, 34, 37)\"><span>Proč současné vzdělávání selhává<\/span><\/h3><p><span style=\"color: rgb(31, 34, 37)\"><span style=\"font-weight: bold\">Priya Lakhani<\/span> začíná tím, že zjistila, jak závažné jsou problémy i v bohatých systémech – <span style=\"background-color: rgb(253, 230, 138)\">v UK odchází asi 20% žáků ze střední školy bez dostatečných dovedností v čtení a psaní, přestože mají školy i kvalifikované učitele.<\/span> Učitelé jsou přetížení: 74% z nich chce do tří let odejít zejména kvůli zátěži spojené s hodnocením a sledováním pokroku každého žáka – „učí ve dne, v noci jsou datoví analytici\".<\/span><\/p><h3><span style=\"color: rgb(31, 34, 37)\">Co může AI ve třídě dělat<\/span><\/h3><p><span style=\"color: rgb(31, 34, 37)\">Místo \"one-size-fits-all\" výuky navrhuje adaptivní systémy, které kombinují umělou inteligenci s neurovědami a didaktikou, aby pochopily, jak se učí každý jednotlivý žák. Její tým vyvinul platformu, kterou používají žáci ve více než 140 zemích a která na základě desítek miliard datových bodů dokáže personalizovat obsah a dávat učitelům srozumitelné, cílené přehledy o učení.<\/span><span><\/span><\/p><h3><span style=\"color: rgb(31, 34, 37)\">Jak děti AI skutečně používají<\/span><\/h3><p><span style=\"color: rgb(31, 34, 37)\">Z uživatelské zpětné vazby ukazuje dva póly: někteří žáci AI chválí jako pomoc, která jim umožňuje dosáhnout dříve \"nemožného\", jiní ji nenávidí, protože je nutí dělat úkoly, a dokonce ji prosí o \"tlačítko na udělání práce za ně\". To odpovídá průzkumům, podle nichž přibližně pětina dětí přiznává, že používá generativní AI k tomu, aby udělala úkol úplně za ně - tedy k aktivnímu vyhýbání se učení.<\/span><span><\/span><\/p><h3><span style=\"color: rgb(31, 34, 37)\">Iluze kompetence a \"zkratky\"<\/span><\/h3><p><span style=\"color: rgb(31, 34, 37)\">Při prvním použití nástrojů jako ChatGPT mají lidé pocit euforie a dojmu, že už nikdy nebudou muset \"opravdu pracovat\". Když se ale setkají s halucinacemi systému a chybami v praxi (například citovaný případ právníka v soudní síni), dochází k vystřízlivění a uvědomění, že krátké cesty nenahrazují vlastní myšlení - jen ho doplňují.<\/span><span><\/span><\/p><\/div>",
+    "content": "<div><h3 style=\"color: rgb(31, 34, 37)\"><span>Proč současné vzdělávání selhává<\/span><\/h3><p style=\"color: rgb(0, 0, 0)\"><span style=\"color: rgb(31, 34, 37)\"><span style=\"font-weight: bold\">Priya Lakhani<\/span> začíná tím, že zjistila, jak závažné jsou problémy i v bohatých systémech – <span style=\"background-color: rgb(253, 230, 138)\">v UK odchází asi 20% žáků ze střední školy bez dostatečných dovedností v čtení a psaní, přestože mají školy i kvalifikované učitele.<\/span> Učitelé jsou přetížení: 74% z nich chce do tří let odejít zejména kvůli zátěži spojené s hodnocením a sledováním pokroku každého žáka – „učí ve dne, v noci jsou datoví analytici\".<\/span><\/p><p><a class=\"video-embed video-embed-fallback\" href=\"https://www.youtube.com/watch?v=YBH8rQv4aTQ\" target=\"_blank\" rel=\"noopener\"><span class=\"video-play-icon\">▶<\/span><span class=\"video-embed-label\">Přehrát video na YouTube<\/span><\/a><\/p><p><span style=\"color: rgb(31, 34, 37); font-weight: 800\">Co může AI ve třídě dělat<\/span><\/p><p style=\"color: rgb(0, 0, 0)\"><span style=\"color: rgb(31, 34, 37)\">Místo \"one-size-fits-all\" výuky navrhuje adaptivní systémy, které kombinují umělou inteligenci s neurovědami a didaktikou, aby pochopily, jak se učí každý jednotlivý žák. Její tým vyvinul platformu, kterou používají žáci ve více než 140 zemích a která na základě desítek miliard datových bodů dokáže personalizovat obsah a dávat učitelům srozumitelné, cílené přehledy o učení.<\/span><span><\/span><\/p><h3 style=\"color: rgb(0, 0, 0)\"><span style=\"color: rgb(31, 34, 37)\">Jak děti AI skutečně používají<\/span><\/h3><p style=\"color: rgb(0, 0, 0)\"><span style=\"color: rgb(31, 34, 37)\">Z uživatelské zpětné vazby ukazuje dva póly: někteří žáci AI chválí jako pomoc, která jim umožňuje dosáhnout dříve \"nemožného\", jiní ji nenávidí, protože je nutí dělat úkoly, a dokonce ji prosí o \"tlačítko na udělání práce za ně\". To odpovídá průzkumům, podle nichž přibližně pětina dětí přiznává, že používá generativní AI k tomu, aby udělala úkol úplně za ně - tedy k aktivnímu vyhýbání se učení.<\/span><span><\/span><\/p><h3 style=\"color: rgb(0, 0, 0)\"><span style=\"color: rgb(31, 34, 37)\">Iluze kompetence a \"zkratky\"<\/span><\/h3><p style=\"color: rgb(0, 0, 0)\"><span style=\"color: rgb(31, 34, 37)\">Při prvním použití nástrojů jako ChatGPT mají lidé pocit euforie a dojmu, že už nikdy nebudou muset \"opravdu pracovat\". Když se ale setkají s halucinacemi systému a chybami v praxi (například citovaný případ právníka v soudní síni), dochází k vystřízlivění a uvědomění, že krátké cesty nenahrazují vlastní myšlení - jen ho doplňují.<\/span><span><\/span><\/p><\/div>",
     "status": "published",
-    "updatedAt": 1791040585388,
+    "updatedAt": 1791047273190,
     "id": "pmukyd87ygwr460",
     "createdAt": 1790582127838
   },
@@ -315,7 +320,7 @@
   var HEAD_HTML = `<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>EdTech blog</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #FFFFFF;
@@ -330,12 +335,14 @@
     --border: #E7E8EB;
     --danger: #C6402A;
     --danger-bg: #FBE7E2;
+    --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
     color-scheme: light;
   }
 
   * { box-sizing: border-box; }
   body {
-    background: var(--bg);
+    min-height: 100vh;
+    background: linear-gradient(180deg, #B7D6FB 0%, #DCE8F4 42%, #FAF0DE 100%) fixed;
     color: var(--ink);
     font-family: 'Bricolage Grotesque', system-ui, sans-serif;
     padding-inline: 20px;
@@ -347,23 +354,17 @@
   h1, h2, h3 { font-weight: 800; letter-spacing: -0.02em; text-wrap: balance; margin: 0; }
   .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
 
-  nav.topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
-    padding-block: 22px;
-    border-bottom: 1px solid var(--border);
-  }
-  .brand { display: flex; align-items: center; gap: 14px; font-size: 1.56rem; font-weight: 800; letter-spacing: -0.01em; }
-  .brand-logo { flex: 0 0 auto; width: 46px; height: 46px; display: block; }
-  .brand-text { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
-  .brand a { color: inherit; text-decoration: none; }
-  .brand-tagline { font-size: 1.01rem; font-weight: 400; letter-spacing: 0; color: var(--ink-soft); }
-  .nav-links { display: flex; align-items: center; gap: 26px; }
-  .nav-links a { color: var(--ink-soft); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+  nav.topbar { display: flex; flex-direction: column; align-items: center; gap: 24px; padding-block: 26px 4px; }
+  .nav-links { order: -1; align-self: flex-end; display: flex; align-items: center; gap: 26px; }
+  .nav-links a { color: #2B3A4F; text-decoration: none; font-weight: 500; font-size: 0.95rem; }
   .nav-links a:hover { color: var(--ink); }
+  .brand { display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; }
+  .brand-logo { flex: 0 0 auto; width: 64px; height: 64px; display: block; }
+  .brand-text { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .brand a { color: var(--ink); text-decoration: none; font-size: clamp(3rem, 8vw, 5rem); line-height: 1; letter-spacing: -0.045em; }
+  .brand-serif { font-family: var(--serif); font-weight: 400; }
+  .brand-sans { font-weight: 800; }
+  .brand-tagline { max-width: 560px; font-family: var(--serif); font-size: 1.2rem; line-height: 1.4; color: #2B3A4F; }
 
   .btn {
     font-family: inherit;
@@ -379,7 +380,7 @@
     transition: transform 0.08s ease, opacity 0.15s ease;
   }
   .btn:active { transform: scale(0.97); }
-  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-primary { background: #0A0A0A; color: #FFFFFF; border-radius: 3px; font-family: 'JetBrains Mono', ui-monospace, monospace; }
   .btn-primary:hover { opacity: 0.88; }
   .btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--border); }
   .btn-ghost:hover { border-color: var(--ink-soft); }
@@ -396,14 +397,14 @@
     padding: 8px 17px;
     border-radius: 999px;
     border: none;
-    background: var(--chip-bg);
+    background: rgba(255, 255, 255, 0.72);
     color: var(--chip-ink);
     cursor: pointer;
   }
-  .chip.active { background: var(--accent); color: var(--accent-ink); }
+  .chip.active { background: #0A0A0A; color: #FFFFFF; }
   .search {
     flex: 0 1 220px;
-    background: var(--chip-bg);
+    background: rgba(255, 255, 255, 0.72);
     border: 1.5px solid transparent;
     border-radius: 999px;
     padding: 8px 17px;
@@ -414,43 +415,52 @@
   .search::placeholder { color: var(--ink-soft); }
   .search:focus { outline: none; border-color: var(--accent); background: var(--bg); }
 
-  .post-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 48px; }
+  .post-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
   .post-item {
-    display: block;
-    align-self: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
     width: 100%;
     text-align: left;
-    background: none;
+    background: #FFFFFF;
     border: none;
-    border-top: 1px solid var(--border);
-    padding-block: 36px;
+    border-radius: 24px;
+    padding: 30px 32px;
     cursor: pointer;
     color: inherit;
     font-family: inherit;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
-  .post-item:nth-child(-n+2) { border-top: none; padding-top: 0; }
+  .post-item:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(30, 60, 100, 0.12); }
   @media (max-width: 720px) {
     .post-list { grid-template-columns: minmax(0, 1fr); }
-    .post-item:nth-child(2) { border-top: 1px solid var(--border); padding-top: 36px; }
+    .post-item { padding: 24px 22px; }
   }
-  .post-meta { color: var(--ink-soft); font-size: 0.92rem; margin-bottom: 12px; }
-  .post-title { font-size: 1.4rem; font-weight: 700; line-height: 1.3; margin-bottom: 10px; }
-  .post-item:hover .post-title { color: var(--accent); }
-  .post-excerpt { color: var(--ink-mute); font-size: 1.02rem; line-height: 1.6; margin-bottom: 16px; max-width: 680px; overflow-wrap: anywhere; }
+  .post-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 16px; }
+  .post-head-text { min-width: 0; }
+  .post-title { font-size: 1.25rem; font-weight: 700; line-height: 1.3; margin-bottom: 6px; overflow-wrap: anywhere; }
+  .post-meta { font-family: 'JetBrains Mono', ui-monospace, monospace; color: var(--ink-soft); font-size: 0.78rem; }
+  .post-cta { flex: 0 0 auto; background: #0A0A0A; color: #FFFFFF; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.82rem; padding: 10px 16px; border-radius: 3px; }
+  .post-excerpt { font-family: var(--serif); color: var(--ink); font-size: 1.08rem; line-height: 1.45; margin-bottom: 18px; overflow-wrap: anywhere; }
+  .post-item .tag-row { margin-top: auto; }
   .tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
   .tag { font-size: 0.8rem; font-weight: 500; color: var(--chip-ink); background: var(--chip-bg); padding: 5px 12px; border-radius: 999px; }
   .draft-badge { display: inline-block; background: var(--chip-bg); color: var(--accent); font-weight: 700; font-size: 0.72rem; padding: 4px 10px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.03em; margin-right: 8px; vertical-align: middle; }
 
   .empty {
-    border: 1px dashed var(--border);
-    border-radius: 12px;
+    background: #FFFFFF;
+    border: none;
+    border-radius: 24px;
     padding: 48px 24px;
     text-align: center;
     color: var(--ink-soft);
   }
   .empty h2 { font-size: 1.3rem; margin-bottom: 8px; color: var(--ink); }
 
-  .post-view { padding-block: 44px 0; }
+  .post-view { margin-top: 32px; padding: 36px 44px 48px; background: #FFFFFF; border-radius: 24px; }
+  .post-view .article-date, .post-view .article-title, .post-view .article-tags, .post-view .article-body { max-width: 760px; margin-inline: auto; }
+  @media (max-width: 720px) { .post-view { padding: 24px 20px 32px; } }
   .post-toprow { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; flex-wrap: wrap; gap: 10px; }
 
   .overlay {
@@ -516,12 +526,12 @@
   .color-swatch { width: 26px; height: 26px; border-radius: 6px; border: 1.5px solid var(--border); cursor: pointer; padding: 0; }
   .color-swatch:hover { border-color: var(--ink-soft); }
 
-  .article-date { color: var(--ink-soft); font-size: 0.92rem; margin-bottom: 10px; }
+  .article-date { font-family: 'JetBrains Mono', ui-monospace, monospace; color: var(--ink-soft); font-size: 0.8rem; margin-bottom: 10px; }
   .article-title { font-size: 1.9rem; margin-bottom: 12px; }
   .article-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 24px; }
-  .article-body { font-size: 1.02rem; }
+  .article-body { font-family: var(--serif); font-size: 1.2rem; line-height: 1.6; }
   .article-body p, .article-body div { margin: 0 0 1em; overflow-wrap: anywhere; }
-  .article-body h1, .article-body h2, .article-body h3 { margin: 1.2em 0 0.5em; font-weight: 700; }
+  .article-body h1, .article-body h2, .article-body h3 { margin: 1.2em 0 0.5em; font-weight: 700; font-family: 'Bricolage Grotesque', system-ui, sans-serif; }
   .article-body ul, .article-body ol { margin: 0 0 1em; padding-left: 1.3em; }
   .article-body blockquote { border-left: 3px solid var(--border); padding-left: 16px; margin: 1.2em 0; color: var(--accent); font-style: italic; }
   .article-body img { max-width: 100%; height: auto; border-radius: 8px; display: block; margin: 20px 0; }
@@ -560,7 +570,7 @@
         <path d="M41 21.5v9" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
         <circle cx="41" cy="32.5" r="2.3" fill="#FFFFFF"/>
       </svg>
-      <div class="brand-text"><a href="#" id="home-link">EdTech blog</a><span class="brand-tagline">Krátké úvahy o nástrojích, trendech a proměnách vzdělávání ve světě technologií.</span></div>
+      <div class="brand-text"><a href="#" id="home-link"><span class="brand-serif">EdTech</span> <span class="brand-sans">blog</span></a><span class="brand-tagline">Krátké úvahy o nástrojích, trendech a proměnách vzdělávání ve světě technologií.</span></div>
     </div>
     <div class="nav-links">
       <a href="#" id="articles-link">Články</a>
@@ -889,8 +899,10 @@
       var item = document.createElement('button');
       item.className = 'post-item';
       item.innerHTML =
-        '<div class="post-meta">' + (p.status === 'draft' ? '<span class="draft-badge">Koncept</span>' : '') + formatMeta(p) + '</div>' +
-        '<div class="post-title">' + escapeHtml(p.title) + '</div>' +
+        '<div class="post-head"><div class="post-head-text">' +
+          '<div class="post-title">' + escapeHtml(p.title) + '</div>' +
+          '<div class="post-meta">' + (p.status === 'draft' ? '<span class="draft-badge">Koncept</span>' : '') + formatMeta(p) + '</div>' +
+        '</div><span class="post-cta">Číst článek</span></div>' +
         '<div class="post-excerpt">' + escapeHtml(p.excerpt || makeExcerpt(p.content)) + '</div>' +
         '<div class="tag-row">' + (p.tags || []).map(function (t) { return '<span class="tag">' + escapeHtml(t) + '</span>'; }).join('') + '</div>';
       item.onclick = function () { navigateToPost(p.id); };
