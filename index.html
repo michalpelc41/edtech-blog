@@ -41,11 +41,12 @@
   .nav-links a:hover { color: var(--ink); }
   .brand { display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; }
   .brand-logo { flex: 0 0 auto; width: 64px; height: 64px; display: block; }
-  .brand-text { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .brand-text { display: flex; flex-direction: column; align-items: center; gap: 4px; }
   .brand a { color: var(--ink); text-decoration: none; font-size: clamp(3rem, 8vw, 5rem); line-height: 1; letter-spacing: -0.045em; }
   .brand-serif { font-family: var(--serif); font-weight: 400; }
   .brand-sans { font-weight: 800; }
-  .brand-tagline { max-width: 560px; font-family: var(--serif); font-size: 1.2rem; line-height: 1.4; color: #2B3A4F; }
+  .brand-tagline { max-width: 560px; font-family: var(--serif); font-size: 1.33rem; line-height: 1.4; color: #2B3A4F; }
+  @media (min-width: 721px) { .brand-tagline { max-width: none; white-space: nowrap; font-size: clamp(0.85rem, 1.9vw, 1.33rem); } }
 
   .btn {
     font-family: inherit;
@@ -61,7 +62,7 @@
     transition: transform 0.08s ease, opacity 0.15s ease;
   }
   .btn:active { transform: scale(0.97); }
-  .btn-primary { background: #0A0A0A; color: #FFFFFF; border-radius: 3px; font-family: 'JetBrains Mono', ui-monospace, monospace; }
+  .btn-primary { background: #0A0A0A; color: #FFFFFF; border-radius: 8px; font-family: 'JetBrains Mono', ui-monospace, monospace; }
   .btn-primary:hover { opacity: 0.88; }
   .btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--border); }
   .btn-ghost:hover { border-color: var(--ink-soft); }
@@ -84,7 +85,7 @@
   }
   .chip.active { background: #0A0A0A; color: #FFFFFF; }
   .search {
-    flex: 0 1 220px;
+    flex: 0 1 286px;
     background: rgba(255, 255, 255, 0.72);
     border: 1.5px solid transparent;
     border-radius: 999px;
@@ -120,9 +121,9 @@
   }
   .post-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 16px; }
   .post-head-text { min-width: 0; }
-  .post-title { font-size: 1.25rem; font-weight: 700; line-height: 1.3; margin-bottom: 6px; overflow-wrap: anywhere; }
+  .post-title { font-size: 1.25rem; font-weight: 700; line-height: 1.15; margin-bottom: 6px; overflow-wrap: anywhere; }
   .post-meta { font-family: 'JetBrains Mono', ui-monospace, monospace; color: var(--ink-soft); font-size: 0.78rem; }
-  .post-cta { flex: 0 0 auto; background: #0A0A0A; color: #FFFFFF; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.82rem; padding: 10px 16px; border-radius: 3px; }
+  .post-cta { flex: 0 0 auto; background: #0A0A0A; color: #FFFFFF; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.82rem; padding: 10px 16px; border-radius: 8px; }
   .post-excerpt { font-family: var(--serif); color: var(--ink); font-size: 1.08rem; line-height: 1.45; margin-bottom: 18px; overflow-wrap: anywhere; }
   .post-item .tag-row { margin-top: auto; }
   .tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -360,11 +361,12 @@
   .nav-links a:hover { color: var(--ink); }
   .brand { display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; }
   .brand-logo { flex: 0 0 auto; width: 64px; height: 64px; display: block; }
-  .brand-text { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .brand-text { display: flex; flex-direction: column; align-items: center; gap: 4px; }
   .brand a { color: var(--ink); text-decoration: none; font-size: clamp(3rem, 8vw, 5rem); line-height: 1; letter-spacing: -0.045em; }
   .brand-serif { font-family: var(--serif); font-weight: 400; }
   .brand-sans { font-weight: 800; }
-  .brand-tagline { max-width: 560px; font-family: var(--serif); font-size: 1.2rem; line-height: 1.4; color: #2B3A4F; }
+  .brand-tagline { max-width: 560px; font-family: var(--serif); font-size: 1.33rem; line-height: 1.4; color: #2B3A4F; }
+  @media (min-width: 721px) { .brand-tagline { max-width: none; white-space: nowrap; font-size: clamp(0.85rem, 1.9vw, 1.33rem); } }
 
   .btn {
     font-family: inherit;
@@ -380,7 +382,7 @@
     transition: transform 0.08s ease, opacity 0.15s ease;
   }
   .btn:active { transform: scale(0.97); }
-  .btn-primary { background: #0A0A0A; color: #FFFFFF; border-radius: 3px; font-family: 'JetBrains Mono', ui-monospace, monospace; }
+  .btn-primary { background: #0A0A0A; color: #FFFFFF; border-radius: 8px; font-family: 'JetBrains Mono', ui-monospace, monospace; }
   .btn-primary:hover { opacity: 0.88; }
   .btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--border); }
   .btn-ghost:hover { border-color: var(--ink-soft); }
@@ -403,7 +405,7 @@
   }
   .chip.active { background: #0A0A0A; color: #FFFFFF; }
   .search {
-    flex: 0 1 220px;
+    flex: 0 1 286px;
     background: rgba(255, 255, 255, 0.72);
     border: 1.5px solid transparent;
     border-radius: 999px;
@@ -439,9 +441,9 @@
   }
   .post-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 16px; }
   .post-head-text { min-width: 0; }
-  .post-title { font-size: 1.25rem; font-weight: 700; line-height: 1.3; margin-bottom: 6px; overflow-wrap: anywhere; }
+  .post-title { font-size: 1.25rem; font-weight: 700; line-height: 1.15; margin-bottom: 6px; overflow-wrap: anywhere; }
   .post-meta { font-family: 'JetBrains Mono', ui-monospace, monospace; color: var(--ink-soft); font-size: 0.78rem; }
-  .post-cta { flex: 0 0 auto; background: #0A0A0A; color: #FFFFFF; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.82rem; padding: 10px 16px; border-radius: 3px; }
+  .post-cta { flex: 0 0 auto; background: #0A0A0A; color: #FFFFFF; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.82rem; padding: 10px 16px; border-radius: 8px; }
   .post-excerpt { font-family: var(--serif); color: var(--ink); font-size: 1.08rem; line-height: 1.45; margin-bottom: 18px; overflow-wrap: anywhere; }
   .post-item .tag-row { margin-top: auto; }
   .tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
