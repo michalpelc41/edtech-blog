@@ -1,0 +1,1388 @@
+<!doctype html><html lang="cs"><head><meta name="description" content="Krátké úvahy o nástrojích, trendech a proměnách vzdělávání ve světě technologií."><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2048%2048%22%3E%3Crect%20width%3D%2248%22%20height%3D%2248%22%20rx%3D%2212%22%20fill%3D%22%232F63EB%22/%3E%3Cpolygon%20points%3D%2224%2C12%2043%2C20%2024%2C28%205%2C20%22%20fill%3D%22%23fff%22/%3E%3Cpath%20d%3D%22M12%2025.5v6.5c0%203%205.5%206%2012%206s12-3%2012-6v-6.5l-12%205.5z%22%20fill%3D%22%23fff%22%20fill-opacity%3D%22.88%22/%3E%3Cpath%20d%3D%22M41%2021.5v9%22%20stroke%3D%22%23fff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2241%22%20cy%3D%2232.5%22%20r%3D%222.3%22%20fill%3D%22%23fff%22/%3E%3C/svg%3E"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>EdTech blog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --surface-2: #F5F6F7;
+    --ink: #14171A;
+    --ink-soft: #6B7280;
+    --ink-mute: #4B5158;
+    --accent: #2F63EB;
+    --accent-ink: #FFFFFF;
+    --chip-bg: #F1F2F4;
+    --chip-ink: #43484F;
+    --border: #E7E8EB;
+    --danger: #C6402A;
+    --danger-bg: #FBE7E2;
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+    padding-inline: 20px;
+    padding-block: 0 64px;
+    line-height: 1.5;
+  }
+  .wrap { max-width: 800px; margin: 0 auto; }
+
+  h1, h2, h3 { font-weight: 800; letter-spacing: -0.02em; text-wrap: balance; margin: 0; }
+  .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+
+  nav.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding-block: 22px;
+    border-bottom: 1px solid var(--border);
+  }
+  .brand { display: flex; align-items: center; gap: 14px; font-size: 1.56rem; font-weight: 800; letter-spacing: -0.01em; }
+  .brand-logo { flex: 0 0 auto; width: 46px; height: 46px; display: block; }
+  .brand-text { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+  .brand a { color: inherit; text-decoration: none; }
+  .brand-tagline { font-size: 1.01rem; font-weight: 400; letter-spacing: 0; color: var(--ink-soft); }
+  .nav-links { display: flex; align-items: center; gap: 26px; }
+  .nav-links a { color: var(--ink-soft); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+  .nav-links a:hover { color: var(--ink); }
+
+  .btn {
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.08s ease, opacity 0.15s ease;
+  }
+  .btn:active { transform: scale(0.97); }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover { opacity: 0.88; }
+  .btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--border); }
+  .btn-ghost:hover { border-color: var(--ink-soft); }
+  .btn-danger { background: transparent; color: var(--danger); border: 1.5px solid var(--danger-bg); }
+  .btn-danger:hover { background: var(--danger-bg); }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .filter-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 40px; margin-bottom: 44px; }
+  .tags-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip {
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 17px;
+    border-radius: 999px;
+    border: none;
+    background: var(--chip-bg);
+    color: var(--chip-ink);
+    cursor: pointer;
+  }
+  .chip.active { background: var(--accent); color: var(--accent-ink); }
+  .search {
+    flex: 0 1 220px;
+    background: var(--chip-bg);
+    border: 1.5px solid transparent;
+    border-radius: 999px;
+    padding: 8px 17px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: var(--ink);
+  }
+  .search::placeholder { color: var(--ink-soft); }
+  .search:focus { outline: none; border-color: var(--accent); background: var(--bg); }
+
+  .post-list { display: flex; flex-direction: column; }
+  .post-item {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    border-top: 1px solid var(--border);
+    padding-block: 36px;
+    cursor: pointer;
+    color: inherit;
+    font-family: inherit;
+  }
+  .post-item:first-child { border-top: none; padding-top: 0; }
+  .post-meta { color: var(--ink-soft); font-size: 0.92rem; margin-bottom: 12px; }
+  .post-title { font-size: 1.55rem; font-weight: 700; line-height: 1.3; margin-bottom: 10px; }
+  .post-item:hover .post-title { color: var(--accent); }
+  .post-excerpt { color: var(--ink-mute); font-size: 1.02rem; line-height: 1.6; margin-bottom: 16px; max-width: 680px; overflow-wrap: anywhere; }
+  .tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tag { font-size: 0.8rem; font-weight: 500; color: var(--chip-ink); background: var(--chip-bg); padding: 5px 12px; border-radius: 999px; }
+  .draft-badge { display: inline-block; background: var(--chip-bg); color: var(--accent); font-weight: 700; font-size: 0.72rem; padding: 4px 10px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.03em; margin-right: 8px; vertical-align: middle; }
+
+  .empty {
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+    padding: 48px 24px;
+    text-align: center;
+    color: var(--ink-soft);
+  }
+  .empty h2 { font-size: 1.3rem; margin-bottom: 8px; color: var(--ink); }
+
+  .post-view { padding-block: 44px 0; }
+  .post-toprow { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; flex-wrap: wrap; gap: 10px; }
+
+  .overlay {
+    position: fixed; inset: 0;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(2px);
+    display: flex; justify-content: center;
+    padding: 32px 20px calc(32px + env(safe-area-inset-bottom, 0px));
+    padding-top: calc(32px + env(safe-area-inset-top, 0px));
+    overflow-y: auto;
+    z-index: 10;
+  }
+  .panel {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    max-width: 720px;
+    width: 100%;
+    height: fit-content;
+    padding: 28px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+  }
+  .panel-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; gap: 10px; }
+  .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+  .field label { font-size: 0.78rem; font-weight: 600; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.04em; }
+  .field input {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 0.95rem;
+    color: var(--ink);
+    background: var(--surface-2);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .field input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .row-end { display: flex; gap: 10px; justify-content: flex-end; margin-top: 8px; }
+
+  .editor-toolbar { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; padding: 8px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; }
+  .toolbar-btn { font-family: inherit; font-size: 0.82rem; font-weight: 500; padding: 6px 10px; border-radius: 6px; border: 1px solid transparent; background: transparent; color: var(--ink); cursor: pointer; }
+  .toolbar-btn:hover { background: var(--bg); border-color: var(--border); }
+  .toolbar-sep { width: 1px; background: var(--border); margin: 2px 4px; }
+  .rich-editor-wrap { position: relative; }
+  .rich-editor { min-height: 240px; line-height: 1.6; font-family: 'Bricolage Grotesque', sans-serif; font-size: 0.95rem; color: var(--ink); background: var(--surface-2); border: 1.5px solid var(--border); border-radius: 8px; padding: 12px 14px; overflow-wrap: anywhere; }
+  .rich-editor:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .rich-editor p, .rich-editor div { margin: 0 0 0.8em; }
+  .rich-editor h2, .rich-editor h3 { margin: 0.8em 0 0.4em; }
+  .rich-editor blockquote { border-left: 3px solid var(--border); padding-left: 14px; margin: 0.8em 0; color: var(--accent); font-style: italic; }
+  .rich-editor img { max-width: 100%; height: auto; border-radius: 8px; display: block; margin: 10px 0; }
+  .rich-editor-placeholder { position: absolute; top: 12px; left: 14px; color: var(--ink-soft); font-size: 0.95rem; pointer-events: none; }
+  .link-popover { display: flex; gap: 8px; align-items: center; margin-bottom: 10px; flex-wrap: wrap; }
+  .link-popover input { flex: 1 1 200px; background: var(--surface-2); border: 1.5px solid var(--border); border-radius: 8px; padding: 8px 10px; font-family: inherit; font-size: 0.9rem; color: var(--ink); }
+  .color-popover { display: flex; gap: 8px; align-items: center; margin-bottom: 10px; flex-wrap: wrap; padding: 10px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; }
+  .video-embed { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; margin: 20px 0; border-radius: 12px; overflow: hidden; background: #000; text-decoration: none; color: var(--ink); }
+  .video-embed-thumb { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .video-embed .video-play-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 56px; height: 56px; border-radius: 50%; background: rgba(0,0,0,0.65); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+  .video-embed-fallback { aspect-ratio: auto; display: flex; align-items: center; gap: 14px; background: var(--surface-2); border: 1.5px solid var(--border); padding: 16px 20px; transition: border-color 0.15s ease; }
+  .video-embed-fallback:hover { border-color: var(--accent); }
+  .video-embed-fallback .video-play-icon { position: static; transform: none; flex: 0 0 auto; width: 42px; height: 42px; background: var(--accent); color: var(--accent-ink); font-size: 1.05rem; }
+  .video-embed-label { font-weight: 600; font-size: 0.96rem; }
+  .video-embed-player { position: relative; width: 100%; aspect-ratio: 16 / 9; margin: 20px 0; border-radius: 12px; overflow: hidden; background: #000; }
+  .video-embed-player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .color-swatch { width: 26px; height: 26px; border-radius: 6px; border: 1.5px solid var(--border); cursor: pointer; padding: 0; }
+  .color-swatch:hover { border-color: var(--ink-soft); }
+
+  .article-date { color: var(--ink-soft); font-size: 0.92rem; margin-bottom: 10px; }
+  .article-title { font-size: 1.9rem; margin-bottom: 12px; }
+  .article-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 24px; }
+  .article-body { font-size: 1.02rem; }
+  .article-body p, .article-body div { margin: 0 0 1em; overflow-wrap: anywhere; }
+  .article-body h1, .article-body h2, .article-body h3 { margin: 1.2em 0 0.5em; font-weight: 700; }
+  .article-body ul, .article-body ol { margin: 0 0 1em; padding-left: 1.3em; }
+  .article-body blockquote { border-left: 3px solid var(--border); padding-left: 16px; margin: 1.2em 0; color: var(--accent); font-style: italic; }
+  .article-body img { max-width: 100%; height: auto; border-radius: 8px; display: block; margin: 20px 0; }
+  .article-body a { color: var(--accent); }
+
+  .about-body { color: var(--ink-mute); font-size: 1rem; line-height: 1.7; }
+  .about-body p { margin: 0 0 1em; }
+
+  .confirm-box { background: var(--danger-bg); border: 1.5px solid var(--danger); border-radius: 10px; padding: 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
+  .confirm-box span { font-size: 0.88rem; color: var(--ink); }
+
+  .toast {
+    position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    transform: translateX(-50%) translateY(12px);
+    background: var(--ink); color: var(--bg);
+    padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
+    opacity: 0; pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 20;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  [hidden] { display: none !important; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style></head><body><div class="wrap" id="app-shell">
+  <nav class="topbar">
+    <div class="brand">
+      <svg class="brand-logo" viewBox="0 0 48 48" role="img" aria-label="EdTech blog logo" xmlns="http://www.w3.org/2000/svg">
+        <rect width="48" height="48" rx="12" fill="#2F63EB"/>
+        <polygon points="24,12 43,20 24,28 5,20" fill="#FFFFFF"/>
+        <path d="M12 25.5v6.5c0 3 5.5 6 12 6s12-3 12-6v-6.5l-12 5.5z" fill="#FFFFFF" fill-opacity="0.88"/>
+        <path d="M41 21.5v9" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="41" cy="32.5" r="2.3" fill="#FFFFFF"/>
+      </svg>
+      <div class="brand-text"><a href="#" id="home-link">EdTech blog</a><span class="brand-tagline">Krátké úvahy o nástrojích, trendech a proměnách vzdělávání ve světě technologií.</span></div>
+    </div>
+    <div class="nav-links">
+      <a href="#" id="articles-link">Články</a>
+      <a href="#" id="about-link">O blogu</a>
+      <button class="btn btn-primary" id="new-post-btn" hidden>+ Nový článek</button>
+    </div>
+  </nav>
+
+  <div id="list-view">
+    <div class="filter-bar">
+      <div class="tags-row" id="tags-row"></div>
+      <input class="search" id="search-input" type="text" placeholder="Hledat…">
+    </div>
+    <div id="post-list" class="post-list"></div>
+    <div id="empty" class="empty" hidden>
+      <h2>Zatím žádné články</h2>
+      <p>Založ první příspěvek tlačítkem „Nový článek“ nahoře.</p>
+    </div>
+  </div>
+
+  <div id="post-view" class="post-view" hidden></div>
+</div>
+
+<div class="toast" id="toast"></div><script id="posts-data" type="application/json">
+[
+  {
+    "title": "Jak by se měly děti učit s AI | Priya Lakhani | TED",
+    "tags": [
+      "AI",
+      "Výuka"
+    ],
+    "excerpt": "TED talk představuje, jak by AI měla podporovat hluboké učení dětí (a dospělých) místo toho, aby jen nabízela rychlé odpovědi, a vysvětluje, proč je \"mentální námaha\" klíčová pro trvalé porozumění.",
+    "content": "<div style=\"color: rgb(0, 0, 0)\"><h3 style=\"color: rgb(31, 34, 37)\"><span>Proč současné vzdělávání selhává<\/span><\/h3><p><span style=\"color: rgb(31, 34, 37)\"><span style=\"font-weight: bold\">Priya Lakhani<\/span> začíná tím, že zjistila, jak závažné jsou problémy i v bohatých systémech – <span style=\"background-color: rgb(253, 230, 138)\">v UK odchází asi 20% žáků ze střední školy bez dostatečných dovedností v čtení a psaní, přestože mají školy i kvalifikované učitele.<\/span> Učitelé jsou přetížení: 74% z nich chce do tří let odejít zejména kvůli zátěži spojené s hodnocením a sledováním pokroku každého žáka – „učí ve dne, v noci jsou datoví analytici\".<\/span><span><\/span><\/p><a class=\"video-embed\" href=\"https://www.youtube.com/watch?v=PrKLKYr1gao\"><img class=\"video-embed-thumb\" src=\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCAFoAeADASIAAhEBAxEB/8QAGwABAAIDAQEAAAAAAAAAAAAAAAEDAgQFBgf/xABFEAACAQMCAgQJCQYGAgMBAAAAAQIDBBESIQUxQVFhcRMUIjJVkaGx0QYVFiNSgZKTwTNCQ2Jy8CRFU1SC4TSiJURj8f/EABkBAQEBAQEBAAAAAAAAAAAAAAABAgMEBf/EAB4RAQEAAgIDAQEAAAAAAAAAAAABAhEDIRIxMiJB/9oADAMBAAIRAxEAPwD5+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAADAwABOBgCATgYAgE4GAIBOBgCATgYAgE4GAIBOBgCATgYAgE4GAIBOBgCATgYAgE4GAIBOBgCATgYAgE4GAIBOBgCATgYAgE4GAIBOBgCATgYAgAAAAAAAAAAAABJAAAkAAAAAACgAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAARAAAAAABJAAAASAAIJAAAAAAAoACgAAAAAAAAAAAAAAAAAAABIEAtouMZNz5OMly6cPHtNt3FulQlCKUoSjr8jmlFJv3+8Dng3lc0nbVoyWak3Jp6Vjox0d5lKvQdWm4yisasPR5iccJPbfD7wOeDeda2fhGkk1lx8jGrycbdW+5jKtSfg/Ki4qDWjRvF6cbvp33A0wdBXFq4UcwSlFw1YjzSjz7d3y6cGtdyhKs3TlqWFl4xl436F7gKAAAAAAAAAAAAAAAAAAAAAEAAiABIEAkAQSAAAAAAAAAAAAAABQAFAAAAAAAAAAAAAAAAExi5SUYptt4SXNnXn8nLqKko17WdSljw9ONXeguuWdsLpxnBocNrwteJ2txVTdOlWhOSXUmmdh8UteF3Ep2VWN7UuKrncVJQcVKm/4e+++W2+4DlXPD50FRnGrSrUazahVpt4bXNbpNNZXNdJdX4JeUOLw4bKMXXm1pcX5LT6c9S3z3M2L2tw+jYwt7K5lWhK68OlKDTpRxjS8833dRdfcejO4vI0oKanVn4K4balClKScopY6fZl9YHKr8PuaN1cW6pyqyt5ONR04uSWOnlyFXh91SsqV3OlJUamdMsPbGOfVnO3WekXG7KVerOlXpU3G8qV1Kp4VKpFtYeIc2sYxL4mnR4vQdKynUr4VtcynO3xLEouScXFcvJ6n1AcKrbV6CzWoVaa28+DXPlz7mbHzVcfOcLDMHUnhxkn5LTWc5xywbt/d03wmdtLibvasrmNVZU9o6ZJ+cue62Jp8Sto8MVSU384U6ErWC0veDe0s9kXJeoDWp8Fq1IUH41aRnXipU6cqjUpJvC6MbtGvbcPrXE6y1QpRo/tZ1ZYjDfGH25OrQ4va058PhKlRlGnQUJ1nSzOlLMsNZ542fI0ravQqW13Z3Vx4PwtSNWNfS2nJZ543w8gVS4ZUU2oVqFWKpSqqdOeU1Hn0Zz3o1/F63g1U8DU0NZUtLw13nZqXtjCOmM6DqeL1oSnQoOEZOSSiuWXye/aTW4hbz8bqq+l4Ovb6Kdtpl5Dwtn0LGOgDiSoVoRhKVKpFT81uLWru6xK3rRqqlKjUVR8oOLy/uO5W4lQlUp1vG4usqykpQVRxxh7yg9k/6SFf2cKmFWzKVGUHJTqSpwepNYb8pZS3wBxI29aVSVONGo5x5xUXld6K2sPDO4uIU5V5xlXoKDhCLf1qUtOeUl5WVnp5nIu5QndVZUpTlBzbjKbzJrPNgUgAAAAAAAAAAAAAAAAAiAAAAAAAAAAAAEgQCylRq1pYpQlJ9htfNdzhvyNujVuTcWS300QWVaNSjLTUi11ZXMwKIBJBQAAAAAAAAAAAAAAAAAJAgEkASCCyNCtPzaNSXdFgYEF6s7l/wKi744948TrLmoLvqRX6gUAu8WqfapfnQ+JPitT7VH86HxAoBf4tU+1R/Oh8SPFqn2qX50PiBSDYVnWfJQfdUi/1Idncr+BUfdFsCkgslQrQWZ0qkV2xaKwAAAAAAAAAAAAAAAAAAAAAiAJIAAkAQCQAIJBAAJi9LTXNboK7HDUp1adt4RU6ecTl0Pr3PT0rPhNeOKVSnWk+mNXOfac624PZ13Su4OXgpJOMcppvHM6NThlvBRlOrNQUs4c8R555Hmyste/DCyPPfKHh8bXMoSk4Sepat8Pv6jgHe+UNLxdRSrSqRqSk05Nt+vpW5wTvx+nl5foIJMoR1S7EdHJjhgynLfCMeYEAkgAAAABnTpzqyxTg5PsQGANmFo5PEprP2YLW/Zt7Tdo8Lk+VD76sv0XxA5JcrWu1nwUox+1LyV62d2nw5x51tGeilFQ9q3LY2FtB6nDVL7Unlk2OBG0y1qrQ36I5l7lj2l0OH6uVOvP7lBfqd+MacNoxiu5GWQONDhkmv/Hpr+ubfuwXx4bPbMqMP6aSfvOjkjJF01FYy6bmr/xen3Evh9KXnupP+qbZs5GQNZcOtV/BRmrO3X8KPqLcjIGHi1H/AEoeonxaj/pR/CZZLFUikmuaXm9oFHi9H/Sh6g7ai/4UPUXupFxllt5WyfQyvUBU7O3lzox9Rg+H2j/gxXcbGRkDXVhSXmSqw/pm0RKyk1tc1f8Ak9XvNrIyBz5cNnvvRn/VSS92CmfDJ4/8eD7YVGvfk6+ScjZpwKnD9POFeHa4qS96NeVrjOmrTfZLMfesHp8kSjTntJRfei7Hl5W1eKy6UnH7UVletFJ6iXD7aT1Rhol9qDwymrw6UuVVT7KsVL28xtHnQdWtwuUedBpY50pZXqfxNOdo08QnFv7MvIft29pRrAznTnTlpnGUX1NYMQIAAAAASADKABIEAkBUAkAAAEADKEJT81feFep+TCl831KmP4r9yO1UqU50mnLfqyc35NxjDhcdL1Z1asdDyWXVClbuVxd1ko81FvGPieXLvKvo4dYR5vj1wq15GlCWqFGOnPb0/ocs2a1OVWrUq003GU5NZ54ya8ouLw00+09WM1NPBld5WoLKXmyZWZU5acp8maZYh7GT0rkYgCASk20kst9AEFtOjOotSwo/alsjas7CdaeFFTl0/Zj39fcdy34fSo4lP6yaXNrZdy6AORa8MlUw403L+eptH7lzf97HTp8MpqKVaTqJfu8o+pbG89jFsisYQhTjiEVFdiJcsEORKxLpAxblnfKMJIsUYx3yYycGsZIK5OO2M56ckp7FNWvRpefUUe9mpU4tRjtTjKfbyQHRbIycWpxWvLzFGH3ZNadzXqefVm/vKbeglVhDz5xj3spnf20f40X3bnA7wNJt2ZcVt1y1vuRhLi9PopTf3o5IGjbpvi/VRf3yI+d5f6C/F/0c0A26XzvLpoL8RK4uumi/ukcwDRt1Vxem+dKa7miyPFLd89a74nGA0bd+F/bS5Vku/YvjVhPzZxl3M8yFs8rYaNvUaidR5uFzXp+bWmu95NinxWvHz4xmvUyLt3G9iFpw85z0bGhT4tRltUjKHtRtUq1KtvTqKXcwNiK6jJN9G4i48lsTpUnnIEp5InThVWKkFJdqJeEQmUalThkHHFGbgvsSWqPqZzLnhsqeXKDh/NDMo+rmvaehTJ2YR46pSnT3azF8pJ5T+8wPU3PDqdXMqX1c3zwtpd6OFd2M6M9OjTL7PRLuf6FGkCWsEAZAAiAAAAAASABBKWXhAckFbFOFJbZWrraM5zmo41ZXYasMylt0mwqeJKLeMkWIpzqUm3SqVKbfNwk1kiTc5apycpdcnlmWjd89op+vHxJlSw0k8trbbn2ewisVJqGzK5TbWGsmc04rGU9s4KG87oqIZBk1sYmkQASAScmklls6vDOHOs88orzpr3L4lXDLKVeqlyzvJ9S+LPTQhGlTUILEVyRBjTpwo01CnFRiuhEthsrbAmTMGyGzCc1FOUmkl0sDLJhOpGEdUpKKXS2c654tGOY261P7T5HLq1qleWqrNyfbyA6txxalDaknUfXyRoVr+4rba9C6o7GsAGN8vdgACESAUAARAAAAAAAAAAAAAAAAAcnlbPrAA2qPELiltr1rqludChxWlPCqJ0360cUBXqIzUo6otNdaMsnmaNerQeaU3Hs6GdS24rCbUa60P7S5AdVSM0ymMk0mnlPpRkmFXpmNahTuKbhVipRZEWZpgec4jw+dGp1p+bPr7H29pzcY5ntatKFelKnUWYs8xxG0lQrST3a3z9pdYRpEk4GBsYgywMdg2IBOBgbEAnHcTjsGxiRIzwYS5tjYzo41f31F0Wn50t03089jWp4y89TLoSUUljOeZFjOTjn7s47TKOjLWdtO3eYSqrfZ79vsJUouKWMPrx0BWNRtRW73Rr55mxU0/umt0sJVnwMcFmNkYuJRgZUo6p7rKXR19g0s6PBbbw13FteTDy3+gHc4dbeLWyUvPlvJ9pfJmUmVSYREmVtkyeTm8Q4gqGadLEqnT1RCrru8p2sfKeZPlFc2cS6vKtzLy3iPRFckVSlKpJynJyk+bZGAggAEAAAAAAAAAAAAAAzhRqVPMhKXcmzFczpWvE6VrBQdNvu2CudOnOEsSTT6msGJv317Ru4p04yjJdEjRAgABAAAAAAAAAAAAABsW15Vtn5DzHpi+R27W7p3MMweJLnF80ecMoTlTmpwbjJcmgr1UWWRZzLC/jcLRPEaq6OvuOhFgXxZrcTtvGLbVFfWQ3Xb2F0WWpgeKz2oZ7UYggzz2oZ7UYYAGee1DPajDBIGWe1DPavWY4AVlntRnWtKtOhCs15E1lMqPVcOpUrr5P0lUhqSTi9+psxnl49unHhM7Y8lEszv3G1xCnClWjCEVFRRqckbl3NsWeN0yW7M8mEVhGQQ5lGcyyXHa+S1BO6qSlFPGEtiZZeM21jj5ZSOTOjOFBVJRaT5dpVnPUem+Vs4Ro0aUUk3LOy6Ev8AtHmSYZeU2vJjMctQSy0j0XAaajbTq/blt3I89HZ56lk9Tw6Pg+H0Y/ym3NfNlUmZzZo392rWi5c5vaKA1+J3/gI+DpP61rd/ZOHlybbeWyZSc5OUnmTeW2AC2AAAABAAAAAAAAAAAADa4fQVev5bxTgtUn2AVzh4GgpT8+p5q6l1mqXXdfxi4lUxhcorqXQikAng2tKq0PCx86LxNe5mqX2lVUq61/s5LTPuf95AwBnWpulVlB84vBgAAAAAAAAAAAAAAAABKbi04vDXJo7nDb7xmOio0qsf/ZdZwjKE5U5xnB4lF5TCvWxZbFmhZXUbqipraS2kupm5BgeOwCQQAAABOBgCECQBB6T5NV1Kzr275wepLsf/APGecNqxuvFJVpKTTnRlBNdb5GM8fKadOPLxy2ni7/xrXYaSEpOTy22yNTNSammcru7Zokr19gUyptnqw+s9P8koYoVa0tk5bfcjzNGCrVoUo7OclFN9rPUVKVbgnDV4Oq6i6tKwpc/Uc+TuaduHq+X8jk8fuvGeJTUXmNJaF39P99hzTJ5cm28tvLfWQbk1NOWV8rsS2l3Hqrd4tqa/lR5qlDXCt/LTb9qPQWs9VpSf8qNMrKkkk5N4SWWzzF7cO7uJVP3VtFdh0+NXOikqEXvPeXccYAAAgAAAAAAAAAAAAAAAAb1GtG1tHHSpSq80+o0orLLIxlXrxhBZb8lAXXFrS+bY3MFpl4RQxlvOU3+hoYOpxecaUaNjTeVSWqfbJ/8AXvOYBBfQjBR8JNat8JPkUl1F6oSp9PNfqBbczjWUakYqLS0yS9n99hrmUXu0+T2MWsNp80AAAAAAAAAAAAAAAAAAAGzYXTtbhSb8iW0kelhJPDTymeRO5we58JQdKT8qny7grijBIIIwCSQIwMEgCMDBIAjBucNo069apTqLOabx2brc1Dd4VlXmyTzFmc/mt4fURV4Ncxk3TxOPRvhmvKyuITUJUZKTW26eTvzUWvLUpPo0JmpOt4JvaeF0TicZy5PReLFzfm26fKhP2Erhty5OPgJNrnutjt2lTXTU5NPVvsy5NxnOSXNL9SXmyJw4uRQ4VVo1YVa2hKElLSnnOHyN3j97qoxt005Sak8ctPR7S2p9Y8zlpXVg5PFUldRS5Kmvey4ZXLLsznhhZj/WmASj0PI2LRqNK5k/9LHraN/hldOyxJ/s289xzabxa3PbGK9pTCtOFOpGLwprDKIuazuLidR9L27isAAAAgAAAAAAAAAAAAAAG5a28YUnc11iEeS631BVMoeCgk/Pn0dSN+2UeGWruqqTrTWKcTH6u3/xF0s157ql1Lo7jRuK9S5qupUe/JJckuoCmblOcpyeZSeW+tkYMsDARjgLKaa5oywMAZvy461z6UGtUdXStmYwk4SyvvXWbioxnQdej5Wnz4dKQVpAsnDCUo7xfJlYAABAAAAAAAAAAAAAAL7Ou7e5hPoziXcUAKsBOBgggE4GCiAZYGCDEGWkYKMTe4Qv8Y+yD/Q1MG7wpf4qT/8AzfvRjP5rfHP1HWeVyil/U8GheTk5tOeduhG7J+Tzx2nNu8qrJJP/AJHkxnb2ZemfDn9RUin+/t6kbjbhFYnJ56GzR4ZGThVWd9Sf9+o3do+f0Fz9ph6ZQjnypbs5fFN7vuiv1OrCbm/JWy5tnL4iv8U32I3xfTHN8tLBODPSMHpeVGrTRqR+1j3mxa8PVehKanhtbJrpNeX7KX3HT4fGqrbMKkFHHJwy/eBxGmnuQdC2s43c/B69MmsqRq3FtUtq0qVVLVF4eHlFRSAAgAAAAAAAAAAANi2sbi6f1dN6ftS2RvRpWnD921cV11cohVNpYqMfGLp6Ka3SfSYXV3KtNaPIhDzUujt7yLivUuJ6qj26IrkinAGDy22223zbGDPAwBhgjBZgjAGGBgzwMAYYMoSnTlqhJxfWmTgYAspVV5tRZixXtJRj4Sn5VPrXQV4Lra5qW8vJ3i+cXyYGpkHVdra3+9vNUa32JcmaNzZXFq8VqTS+0t16xs0oAAQAAAAAAAAAAAso0nVqKK2XS30Gdpa1LqvGlTwm+l9BZXp+AuVRg8qDW/WwqvBODPSTpIqvA0lmkaQK8E4LNI0gV4J0meknAFek3OG+TcS/ofvRr6TcsI4dR9OEv79RjP5rfH9RuSlg595vUW22DcfM1breUTzY+3qy9MbGTjWkk8Zib/i9RvLec9OeRzaD01ovtOnGTWyb3NZzWmeO72zcVTjoj97OZfLNy+5HST5ZOddb3Evu9xeGfpOb5a2CGi3Bi0erTyqZLyJdxv8ADKlXEV5Pgs6cdOcZNKa2fcbXDZfVPsnB+3BA4a9F9Bd6LOMQ/wDkJv7UU/YUUX4PiK7KjXtN7jEM16c+uH6lRyJUYvox3GPi66JY70bOkaQNXxSo/NlTf/LHvJ8RuXypZ7pJ/qbGkaQKPELv/bVPUSuHXj/+rU9Rdh9ZOH1sCpcLvX/A0/1SSLFwit/Er21NdtQYGkDOPD7Kn+2vnN9VKH6lka1lbvNvZ65L9+q8+w19I0hVlxeXFwsTqYj9mOyNfSWaRpCKtI0lukaQKtI0lmkaQKtI0lukaQKtI0lukjSBXpGks0jSBVpGktwRpAr0m3Q4hc0Fp1qpD7M1lFGkYA25VuHXG9ezlSk/3qL/AEKpWNjP9jfOPZUpv3opwNIEy4bP9yvbzXZPHvKpWNxH92D7qkfiZ4Jw+sCh21dfw/8A2RHgKv8Apv2Gxv1sYfWBr+AqfZx3seBfS0i/SNIFPgl1tmSgl0FmBpA3OCxxeuXVBmrVevib7aiXtN/hUdPhp9UcHOtvrOIRfXUyBZgYM9JOki6V4JwZ6SdJTSvAwWaSdINK8DSWaSdI2aV4NuyWIzfTlIo0m1bLTRk+1+458l/Lpxz9Db6TXutlH7y9vLKrhZjHHXg889vTfShROjTeqMZdaNRQNihFqGG9m9jtyzpx4r2u26GaNxH6+ZuRWnbqKa0c1M9aMcX03zfLW0kOJeoBwPQ8zTnHmLKMXGpmKbjHUm+jDyXTgY2EE6849aa9YGNz5HEJP+fJ1eIR121KfU8es5XFounWT/lW/X0HWi/DcOfXpUio5uCNJbgjAFeBgs0jSBVpJwWaRpAr0kaS3SNIFWkaSzSNIFeBpLNI0gVaRpLdI0gVaRpLNI0gVaRpLdI0gVaRpLNI0gV6SNJbpGkCrSNJZpGkCvSRpLdI0gVaRpLNI0gV6RpLNIwBVpGkt0jSBVpGks0k4Aq0jBbgaQNu3+q4fUl15ObwqOq+i+rLOjevwPD9HYafBY/Xyl1RCRdoJ0F+hdQUERpRoJ0F+hdQ0LqLoUaSdBfpXUNK6ho2p0E6C3SuonSho2p0FvmW77WTpRFTemorrOXL8unF9K+bEllpdpjKvTo+THy5+xGVCXhJSb6DlhN5R2zv5rLQWw0qKTe4wVzempFdZ25Z+XHiv6ZqWW2Jxzh9hhDONyxLKOPF9OvL8sNIcS3T2DSuo9bzNWpEotvIvl2m5UhsadRaK9OfaQZcahmNOXeja4VUUrWCfLGGY8UhrstXTFpmrwupiDj1MRK2HHTJxfNPBGC2rvV1LlNe1f2jHAVhgYM8DAGGBgzwMAYYIwWYIwBhgYM8DAGGBgzwMAYYGDPAwBXgYLMEYAwwMGeBgDDBGkswMAV4GCzAwBXgYM8DAFeBgswMAV4GkzwMAYaTTqX1OEsRi59ucGxeNwtaklzxg4wSupSu6VV4zpfVI2NJwy2nc1qXmzeOp7oJt1tI0ldpcxuE01ia5rrNjAVXpM6MNVWK6M5ZOCyHkQcul7IDW4tUzS0rpZnwWGKM59bNHiE9U0jqWEVS4cpPqbJSLMDBngnHcaXTDAwWYGl9gNK8E6SzAwBXpJ0lmkYApqKSpycEtSW2TTnG6m8S0qD3bg3n/o6U7q0oWs5TjUq1nlKEU0l25/X2M5UuIaILWk6j56F5OPWceSW+nTCye2Ttd8rbsNmzoyipuXJtYNO3v1WuYUpRajN4y2diMVFJLCSHHjd7q5542ajDSc6pdPw0sUqksPbycHVNK/UbdO405cmovsNck3GcMpKrVSpOLSpVYPo2XxNygm6Ucpp9OS66ueF+I1J21SDqJZgnNpvHRh/A1Ly9p2tpGpBqTmvq+3tMceNlazyljYk4wWZyUV1t4MYVaVR4hVhJ9Skjy9a4q156qs3J9pDrVHGEXJ4h5vYdnHb1FSJoXUcwfZuatjxOaapV5aoPZSfNG9VJVXpeMWGPtRwcazqaKrT2yb9C7ja0ZQqRk49DS5HLqPXVlOHJvPcIldhT1xwt2t13lixJJrkzi07yVLzfKa6S6HFZQWHSi1nPPBSOrgYNa34hQrNRbcJPol0/ebeArHAwZYGAMMDBlgYAxwV161OhHVUeOpdLLKs40qUqkuUUefr1ZVajnN5b9gG/LiUn5lOKX825jHiVTPlU4tdmUc/VgjUQ3HcoXlKs9KemXU+k2MHm8s6fD75yao1nlvaMn7mUdHBGDPAwBhgYM8GFWcaVNzm8RXMBgYObPi71eRSWnte5ZS4rSk8VYOHat0E3G9gh4Sy2kl0smE4VIqUJKUX0o4/FK8p3Lp58iG2O0Dou7t08OtH7tzOFWlUeIVIyfUnueeATb0mBg41vxCtRaUn4SHU+frOvQrU7iGum89a6UF2ywRgzeyyzk1uI1vCt01FQXQ1nPeFOKV91Qi+W8vgc8N5eWAwAADOlUlSqRnHmjuwkqkIzjykso8+dvhu9lDPb7wsX4KLisk8J7R2M7mt4KOF5zOTVquTwgtTUbq1sdbwjtXcvAcN0rZtYRx7XTSuITr5UFvyN68uPG5wUIuNKO+/SSkdv5v4l6Lu/yyfm/iXou7/LOH9K+N+kK34mPpXxv0hW/Ex2u47nzfxL0Xd/gJ+b+Jei7v8AAcL6Vcb9IVvxMfSrjXpCt+Njs3He+buJ+i7r8CHzdxP0XdfhXxOB9KeNekK/438R9KONekK/5kviO03HoPm7ifou6/CviatzwLity8+KX1PHRGCa96OR9KOM+kK/5kviPpRxn0hcfmS+I7XcdGHyVvNWatnxGT/lpxj+rN2h8nY0pJy4Ff1n11JL3JpHB+k/GfSFx+bL4j6T8Z9IXH5kviTVJlHqVw2K5fJqumuTUIpp+so+b+J+i7r1L4nnfpPxn0hcfmy+JH0m4z6QuPzZfESWFylej+b+J+i7r1L4mNbhN9XoVKVfhV5iUdnFLMX0Pmee+k3GfSFx+bL4kP5ScYf+Y3P50/iXs3HTp/Ji9h53D76p26VHH3ZZxeLU5297O3nGrDweFpqpKS2zvjYvXyl4yv8AMbn86XxNC6uq13XnXuJupVn50pNtsSJbNKQAVkPScO4bxG84fSq0LOtWg00pxWzw8Hmzo23HeJWlCNC2vK1KlHOIwqSSWd+SZKsrsS+T/F3/AJdcfhPO3TcKsqHJU5NPvN9fKbjK/wAwuPvqy+Jym2223lvm2JFtMggFZSej4HTuuI2zjQoVK06O0nFZ2fLPt9R5s27DiV5w2U5WdedFzWJaJNZ9QWV6z5n4l/sLj8BHzRxL/YXH4Dg/SjjXpCv+Y/iPpTxr0hX/ABsi7d75o4l/sLj8ByuIXfiFR0alOXhlzg9sd5rr5Vca9IVn/wA2cic5VKkpzeZSbbb6WOzbZrXdevnwkvJ5qK2Rqt7lk7iU6dODjBKCwmo4b7+sqCWhKeCAVGWcojJACvWcNsuIX1jSuKNlWqxksa4JYeNus2fmjivoy59S+J5qz43xKxoKha3lalSTbUYzaSz3F30n4z6RuPzZfEna7jv/ADRxX0Zc+qPxODxypUo1HZ1aU6VWLTqRljK2ylsR9JuM+kbn82XxObcV6tzXnXrzlUqTeZSk8tsFqsAFZWUq1ShLVSm4vs6TGc3UnKcnmUnlmIAAAAZ0qs6MtVOTi+WxgANyN1Oa8qrP1lc0s8/UUJ4J1sab8iUMctzEy1vsMQzQABGcKU6j8iLZ6e24PxNWNNUOH16m3OMds9PM8tCThOM484vKOt9KeOekrj8QWNut8neOVJt/Ntfsyl8TG2+THF6deM63C7iUE84ilv7TX+lXHPSVf8RP0r476Sr+sna9N684HxavWU48JuVCK5aVn3nHqV/AzlCrSqQlFtNSWMNc0bX0r476SretHOur66vG3c3FSrmWpqUts9eBo3GuACsgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//Z\" alt=\"YouTube video\"><span class=\"video-play-icon\">▶<\/span><\/a><p><br><\/p><h3><span style=\"color: rgb(31, 34, 37)\">Co může AI ve třídě dělat<\/span><\/h3><p><span style=\"color: rgb(31, 34, 37)\">Místo \"one-size-fits-all\" výuky navrhuje adaptivní systémy, které kombinují umělou inteligenci s neurovědami a didaktikou, aby pochopily, jak se učí každý jednotlivý žák. Její tým vyvinul platformu, kterou používají žáci ve více než 140 zemích a která na základě desítek miliard datových bodů dokáže personalizovat obsah a dávat učitelům srozumitelné, cílené přehledy o učení.<\/span><span><\/span><\/p><h3><span style=\"color: rgb(31, 34, 37)\">Jak děti AI skutečně používají<\/span><\/h3><p><span style=\"color: rgb(31, 34, 37)\">Z uživatelské zpětné vazby ukazuje dva póly: někteří žáci AI chválí jako pomoc, která jim umožňuje dosáhnout dříve \"nemožného\", jiní ji nenávidí, protože je nutí dělat úkoly, a dokonce ji prosí o \"tlačítko na udělání práce za ně\". To odpovídá průzkumům, podle nichž přibližně pětina dětí přiznává, že používá generativní AI k tomu, aby udělala úkol úplně za ně - tedy k aktivnímu vyhýbání se učení.<\/span><span><\/span><\/p><h3><span style=\"color: rgb(31, 34, 37)\">Iluze kompetence a \"zkratky\"<\/span><\/h3><p><span style=\"color: rgb(31, 34, 37)\">Při prvním použití nástrojů jako ChatGPT mají lidé pocit euforie a dojmu, že už nikdy nebudou muset \"opravdu pracovat\". Když se ale setkají s halucinacemi systému a chybami v praxi (například citovaný případ právníka v soudní síni), dochází k vystřízlivění a uvědomění, že krátké cesty nenahrazují vlastní myšlení - jen ho doplňují.<\/span><span><\/span><\/p><\/div>",
+    "status": "published",
+    "updatedAt": 1790837698691,
+    "id": "pmukyd87ygwr460",
+    "createdAt": 1790582127838
+  },
+  {
+    "id": "welcome",
+    "title": "Vítej v Tabuli",
+    "tags": [
+      "Info"
+    ],
+    "excerpt": "Tohle je tvůj nový veřejný blog o vzdělávacích technologiích. Tenhle úvodní příspěvek můžeš kdykoliv upravit nebo smazat. V editoru článku máš k dispozici formátovací lištu: tučné a kurzivní písmo, podtržení, nadpisy, odrážkové a číslované seznamy, citace, zarovnání odstavců, odkazy a vkládání obrázků přímo do textu.",
+    "content": "<blockquote><b>Toto je veřejný blog o vzdělávacích technologiích. Číst ho může kdokoliv s odkazem, ale přidávat a upravovat články můžeš jen ty jako vlastník téhle stránky.<\/b><\/blockquote><h2>Jak psát<\/h2><p><span><span style=\"color: rgb(198, 64, 42)\">V editoru článku máš k dispozici formátovací lištu<\/span>: tučné a kurzivní písmo, podtržení, nadpisy, <span>odrážkové<\/span> a <span>číslované<\/span> seznamy, citace, zarovnání odstavců, <span style=\"color: rgb(194, 102, 13)\">odkazy<\/span> a vkládání <span style=\"color: rgb(31, 138, 76)\">obrázků<\/span> přímo do textu.<\/span><\/p><h2 style=\"text-align: left\">Co dál<\/h2><blockquote><span>Klikni na „Nový článek“ nahoře a napiš první skutečný příspěvek. Tenhle úvodní text pak klidně smaž.<\/span><\/blockquote><p><span><br><\/span><\/p>",
+    "createdAt": 1790526132603,
+    "updatedAt": 1790581980895,
+    "status": "published"
+  },
+  {
+    "id": "p1",
+    "title": "Budoucnost vzdělávání v digitálním věku",
+    "tags": [
+      "AI"
+    ],
+    "excerpt": "Personalizované učení umožňuje přizpůsobit tempo a styl výuky každému studentovi.",
+    "content": "<p><strong>Hlavní myšlenka<\/strong><br><span style=\"background-color: rgb(253, 230, 138)\">Vzdělávání prochází zásadní transformací.<\/span> Digitální nástroje již nejsou pouze doplňkem tradičních metod — stávají se jejich nedílnou součástí.<\/p><p>Personalizované učení umožňuje přizpůsobit tempo a styl výuky každému studentovi.<\/p><p>Klíčem k úspěchu je balance. Integrovat digitální nástroje tam, kde přinášejí hodnotu, a zachovat prostor pro autentickou lidskou interakci.<\/p>",
+    "createdAt": 1790526334350,
+    "updatedAt": 1790582032598,
+    "status": "published"
+  },
+  {
+    "id": "p2",
+    "title": "Canva 2.0 - nová generace AI agenta, který tvoří za vás",
+    "tags": [
+      "AI",
+      "Aplikace"
+    ],
+    "excerpt": "Nová generace Canvy založená na konverzačním (chatovém) ovládání a „agentní“ AI, která za vás skládá celý proces od nápadu až po hotové návrhy.",
+    "content": "<blockquote>Nová generace Canvy založená na konverzačním (chatovém) ovládání a „agentní“ AI, která za vás skládá celý proces od nápadu až po hotové návrhy.<\/blockquote><p><b>Konverzační design: z prostého textu vytvoří hotový design nebo sadu výstupů (např. prezentace, pracovní listy, plakáty, testy, dokumenty...).<\/b><\/p><p>Objektová / vrstvená inteligence: výstup není plochý obrázek, ale vrstvy – lze měnit jednotlivé prvky (obrázek, text, font) bez regenerace celku.<\/p><p>Umožňuje skutečnou diferenciaci a personalizaci návrhů – z jednoho tématu (např. fotosyntéza, zlomky, historie) rychle vytvoří varianty pro různé úrovně žáků, případně aktivity pro žáky a podpůrné materiály pro rodiče.<\/p><p>Pro učitele a prostředí Google Workspace for Education přináší novinky z Google I/O 2026 především posun od pasivní asistence k aktivní podpoře při každodenní agendě.<\/p><p>Rychlejší příprava: Nový model Gemini 3.5 Flash výrazně zrychluje generování textů a výukových materiálů. Díky funkci „Dokumenty Live“ můžete připravovat osnovy, plány hodin nebo pracovní listy pouhým hlasem.<\/p><p>Efektivnější organizace výuky: AI agenti se postupně integrují do celého ekosystému. Gemini vám pomůže automatizovat třídění dokumentů na Disku, shrne dlouhá e-mailová vlákna od rodičů či kolegů a v Google Meet automaticky zachytí klíčové poznámky a úkoly.<\/p><p>Nové možnosti tvorby obsahu: S nástroji jako Gemini Omni můžete snadno vytvářet edukativní videa nebo upravovat vizuální obsah pro výuku. AI nyní lépe rozumí fyzikálním principům a logice, což usnadňuje tvorbu názorných demonstrací přímo v prohlížeči.<\/p>",
+    "createdAt": 1790526279030,
+    "updatedAt": 1790531533053
+  }
+]
+</script><script>
+(function () {
+  var SELF_SCRIPT_SOURCE = document.currentScript ? document.currentScript.textContent : '';
+
+  var HEAD_HTML = `<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>EdTech blog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --surface-2: #F5F6F7;
+    --ink: #14171A;
+    --ink-soft: #6B7280;
+    --ink-mute: #4B5158;
+    --accent: #2F63EB;
+    --accent-ink: #FFFFFF;
+    --chip-bg: #F1F2F4;
+    --chip-ink: #43484F;
+    --border: #E7E8EB;
+    --danger: #C6402A;
+    --danger-bg: #FBE7E2;
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+    padding-inline: 20px;
+    padding-block: 0 64px;
+    line-height: 1.5;
+  }
+  .wrap { max-width: 800px; margin: 0 auto; }
+
+  h1, h2, h3 { font-weight: 800; letter-spacing: -0.02em; text-wrap: balance; margin: 0; }
+  .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+
+  nav.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding-block: 22px;
+    border-bottom: 1px solid var(--border);
+  }
+  .brand { display: flex; align-items: center; gap: 14px; font-size: 1.56rem; font-weight: 800; letter-spacing: -0.01em; }
+  .brand-logo { flex: 0 0 auto; width: 46px; height: 46px; display: block; }
+  .brand-text { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+  .brand a { color: inherit; text-decoration: none; }
+  .brand-tagline { font-size: 1.01rem; font-weight: 400; letter-spacing: 0; color: var(--ink-soft); }
+  .nav-links { display: flex; align-items: center; gap: 26px; }
+  .nav-links a { color: var(--ink-soft); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+  .nav-links a:hover { color: var(--ink); }
+
+  .btn {
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.08s ease, opacity 0.15s ease;
+  }
+  .btn:active { transform: scale(0.97); }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover { opacity: 0.88; }
+  .btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--border); }
+  .btn-ghost:hover { border-color: var(--ink-soft); }
+  .btn-danger { background: transparent; color: var(--danger); border: 1.5px solid var(--danger-bg); }
+  .btn-danger:hover { background: var(--danger-bg); }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .filter-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 40px; margin-bottom: 44px; }
+  .tags-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip {
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 17px;
+    border-radius: 999px;
+    border: none;
+    background: var(--chip-bg);
+    color: var(--chip-ink);
+    cursor: pointer;
+  }
+  .chip.active { background: var(--accent); color: var(--accent-ink); }
+  .search {
+    flex: 0 1 220px;
+    background: var(--chip-bg);
+    border: 1.5px solid transparent;
+    border-radius: 999px;
+    padding: 8px 17px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: var(--ink);
+  }
+  .search::placeholder { color: var(--ink-soft); }
+  .search:focus { outline: none; border-color: var(--accent); background: var(--bg); }
+
+  .post-list { display: flex; flex-direction: column; }
+  .post-item {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    border-top: 1px solid var(--border);
+    padding-block: 36px;
+    cursor: pointer;
+    color: inherit;
+    font-family: inherit;
+  }
+  .post-item:first-child { border-top: none; padding-top: 0; }
+  .post-meta { color: var(--ink-soft); font-size: 0.92rem; margin-bottom: 12px; }
+  .post-title { font-size: 1.55rem; font-weight: 700; line-height: 1.3; margin-bottom: 10px; }
+  .post-item:hover .post-title { color: var(--accent); }
+  .post-excerpt { color: var(--ink-mute); font-size: 1.02rem; line-height: 1.6; margin-bottom: 16px; max-width: 680px; overflow-wrap: anywhere; }
+  .tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tag { font-size: 0.8rem; font-weight: 500; color: var(--chip-ink); background: var(--chip-bg); padding: 5px 12px; border-radius: 999px; }
+  .draft-badge { display: inline-block; background: var(--chip-bg); color: var(--accent); font-weight: 700; font-size: 0.72rem; padding: 4px 10px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.03em; margin-right: 8px; vertical-align: middle; }
+
+  .empty {
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+    padding: 48px 24px;
+    text-align: center;
+    color: var(--ink-soft);
+  }
+  .empty h2 { font-size: 1.3rem; margin-bottom: 8px; color: var(--ink); }
+
+  .post-view { padding-block: 44px 0; }
+  .post-toprow { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; flex-wrap: wrap; gap: 10px; }
+
+  .overlay {
+    position: fixed; inset: 0;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(2px);
+    display: flex; justify-content: center;
+    padding: 32px 20px calc(32px + env(safe-area-inset-bottom, 0px));
+    padding-top: calc(32px + env(safe-area-inset-top, 0px));
+    overflow-y: auto;
+    z-index: 10;
+  }
+  .panel {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    max-width: 720px;
+    width: 100%;
+    height: fit-content;
+    padding: 28px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+  }
+  .panel-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; gap: 10px; }
+  .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+  .field label { font-size: 0.78rem; font-weight: 600; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.04em; }
+  .field input {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 0.95rem;
+    color: var(--ink);
+    background: var(--surface-2);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .field input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .row-end { display: flex; gap: 10px; justify-content: flex-end; margin-top: 8px; }
+
+  .editor-toolbar { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; padding: 8px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; }
+  .toolbar-btn { font-family: inherit; font-size: 0.82rem; font-weight: 500; padding: 6px 10px; border-radius: 6px; border: 1px solid transparent; background: transparent; color: var(--ink); cursor: pointer; }
+  .toolbar-btn:hover { background: var(--bg); border-color: var(--border); }
+  .toolbar-sep { width: 1px; background: var(--border); margin: 2px 4px; }
+  .rich-editor-wrap { position: relative; }
+  .rich-editor { min-height: 240px; line-height: 1.6; font-family: 'Bricolage Grotesque', sans-serif; font-size: 0.95rem; color: var(--ink); background: var(--surface-2); border: 1.5px solid var(--border); border-radius: 8px; padding: 12px 14px; overflow-wrap: anywhere; }
+  .rich-editor:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .rich-editor p, .rich-editor div { margin: 0 0 0.8em; }
+  .rich-editor h2, .rich-editor h3 { margin: 0.8em 0 0.4em; }
+  .rich-editor blockquote { border-left: 3px solid var(--border); padding-left: 14px; margin: 0.8em 0; color: var(--accent); font-style: italic; }
+  .rich-editor img { max-width: 100%; height: auto; border-radius: 8px; display: block; margin: 10px 0; }
+  .rich-editor-placeholder { position: absolute; top: 12px; left: 14px; color: var(--ink-soft); font-size: 0.95rem; pointer-events: none; }
+  .link-popover { display: flex; gap: 8px; align-items: center; margin-bottom: 10px; flex-wrap: wrap; }
+  .link-popover input { flex: 1 1 200px; background: var(--surface-2); border: 1.5px solid var(--border); border-radius: 8px; padding: 8px 10px; font-family: inherit; font-size: 0.9rem; color: var(--ink); }
+  .color-popover { display: flex; gap: 8px; align-items: center; margin-bottom: 10px; flex-wrap: wrap; padding: 10px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; }
+  .video-embed { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; margin: 20px 0; border-radius: 12px; overflow: hidden; background: #000; text-decoration: none; color: var(--ink); }
+  .video-embed-thumb { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .video-embed .video-play-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 56px; height: 56px; border-radius: 50%; background: rgba(0,0,0,0.65); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+  .video-embed-fallback { aspect-ratio: auto; display: flex; align-items: center; gap: 14px; background: var(--surface-2); border: 1.5px solid var(--border); padding: 16px 20px; transition: border-color 0.15s ease; }
+  .video-embed-fallback:hover { border-color: var(--accent); }
+  .video-embed-fallback .video-play-icon { position: static; transform: none; flex: 0 0 auto; width: 42px; height: 42px; background: var(--accent); color: var(--accent-ink); font-size: 1.05rem; }
+  .video-embed-label { font-weight: 600; font-size: 0.96rem; }
+  .video-embed-player { position: relative; width: 100%; aspect-ratio: 16 / 9; margin: 20px 0; border-radius: 12px; overflow: hidden; background: #000; }
+  .video-embed-player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .color-swatch { width: 26px; height: 26px; border-radius: 6px; border: 1.5px solid var(--border); cursor: pointer; padding: 0; }
+  .color-swatch:hover { border-color: var(--ink-soft); }
+
+  .article-date { color: var(--ink-soft); font-size: 0.92rem; margin-bottom: 10px; }
+  .article-title { font-size: 1.9rem; margin-bottom: 12px; }
+  .article-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 24px; }
+  .article-body { font-size: 1.02rem; }
+  .article-body p, .article-body div { margin: 0 0 1em; overflow-wrap: anywhere; }
+  .article-body h1, .article-body h2, .article-body h3 { margin: 1.2em 0 0.5em; font-weight: 700; }
+  .article-body ul, .article-body ol { margin: 0 0 1em; padding-left: 1.3em; }
+  .article-body blockquote { border-left: 3px solid var(--border); padding-left: 16px; margin: 1.2em 0; color: var(--accent); font-style: italic; }
+  .article-body img { max-width: 100%; height: auto; border-radius: 8px; display: block; margin: 20px 0; }
+  .article-body a { color: var(--accent); }
+
+  .about-body { color: var(--ink-mute); font-size: 1rem; line-height: 1.7; }
+  .about-body p { margin: 0 0 1em; }
+
+  .confirm-box { background: var(--danger-bg); border: 1.5px solid var(--danger); border-radius: 10px; padding: 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
+  .confirm-box span { font-size: 0.88rem; color: var(--ink); }
+
+  .toast {
+    position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    transform: translateX(-50%) translateY(12px);
+    background: var(--ink); color: var(--bg);
+    padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
+    opacity: 0; pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 20;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  [hidden] { display: none !important; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>`;
+
+  var BODY_SHELL_HTML = `<div class="wrap" id="app-shell">
+  <nav class="topbar">
+    <div class="brand">
+      <svg class="brand-logo" viewBox="0 0 48 48" role="img" aria-label="EdTech blog logo" xmlns="http://www.w3.org/2000/svg">
+        <rect width="48" height="48" rx="12" fill="#2F63EB"/>
+        <polygon points="24,12 43,20 24,28 5,20" fill="#FFFFFF"/>
+        <path d="M12 25.5v6.5c0 3 5.5 6 12 6s12-3 12-6v-6.5l-12 5.5z" fill="#FFFFFF" fill-opacity="0.88"/>
+        <path d="M41 21.5v9" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="41" cy="32.5" r="2.3" fill="#FFFFFF"/>
+      </svg>
+      <div class="brand-text"><a href="#" id="home-link">EdTech blog</a><span class="brand-tagline">Krátké úvahy o nástrojích, trendech a proměnách vzdělávání ve světě technologií.</span></div>
+    </div>
+    <div class="nav-links">
+      <a href="#" id="articles-link">Články</a>
+      <a href="#" id="about-link">O blogu</a>
+      <button class="btn btn-primary" id="new-post-btn" hidden>+ Nový článek</button>
+    </div>
+  </nav>
+
+  <div id="list-view">
+    <div class="filter-bar">
+      <div class="tags-row" id="tags-row"></div>
+      <input class="search" id="search-input" type="text" placeholder="Hledat…">
+    </div>
+    <div id="post-list" class="post-list"></div>
+    <div id="empty" class="empty" hidden>
+      <h2>Zatím žádné články</h2>
+      <p>Založ první příspěvek tlačítkem „Nový článek“ nahoře.</p>
+    </div>
+  </div>
+
+  <div id="post-view" class="post-view" hidden></div>
+</div>
+
+<div class="toast" id="toast"></div>`;
+
+  var state = { posts: [], filterTag: null, search: '', isAdmin: false, artifactCap: null };
+
+  var els = {
+    listView: document.getElementById('list-view'),
+    postView: document.getElementById('post-view'),
+    list: document.getElementById('post-list'),
+    empty: document.getElementById('empty'),
+    tagsRow: document.getElementById('tags-row'),
+    search: document.getElementById('search-input'),
+    newBtn: document.getElementById('new-post-btn'),
+    homeLink: document.getElementById('home-link'),
+    articlesLink: document.getElementById('articles-link'),
+    aboutLink: document.getElementById('about-link'),
+    toast: document.getElementById('toast')
+  };
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  var ALLOWED_TAGS = { P: 1, DIV: 1, BR: 1, STRONG: 1, B: 1, EM: 1, I: 1, U: 1, H1: 1, H2: 1, H3: 1, UL: 1, OL: 1, LI: 1, BLOCKQUOTE: 1, A: 1, IMG: 1, SPAN: 1 };
+  var SAFE_COLOR_RE = /^(#[0-9a-f]{3,8}|rgba?\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*(,\s*(0|1|0?\.\d+)\s*)?\)|transparent|inherit)$/i;
+  var SAFE_STYLE_PROPS = {
+    'text-align': /^(left|center|right|justify)$/i,
+    'color': SAFE_COLOR_RE,
+    'background-color': SAFE_COLOR_RE,
+    'font-weight': /^(bold|bolder|lighter|normal|[1-9]00)$/i,
+    'font-style': /^(italic|oblique|normal)$/i,
+    'text-decoration': /^(underline|line-through|overline|none)$/i,
+    'text-decoration-line': /^(underline|line-through|overline|none)$/i
+  };
+
+  function sanitizeStyleAttr(value) {
+    var out = [];
+    (value || '').split(';').forEach(function (decl) {
+      var idx = decl.indexOf(':');
+      if (idx === -1) return;
+      var prop = decl.slice(0, idx).trim().toLowerCase();
+      var val = decl.slice(idx + 1).trim();
+      var re = SAFE_STYLE_PROPS[prop];
+      if (re && re.test(val)) out.push(prop + ': ' + val);
+    });
+    return out.join('; ');
+  }
+
+  var TEXT_COLORS = [
+    { name: 'Výchozí', value: '#14171A' },
+    { name: 'Modrá', value: '#2F63EB' },
+    { name: 'Červená', value: '#C6402A' },
+    { name: 'Zelená', value: '#1F8A4C' },
+    { name: 'Fialová', value: '#7C3AED' },
+    { name: 'Oranžová', value: '#C2660D' }
+  ];
+  var HIGHLIGHT_COLORS = [
+    { name: 'Bez podbarvení', value: 'transparent' },
+    { name: 'Žlutá', value: '#FDE68A' },
+    { name: 'Zelená', value: '#BBF7D0' },
+    { name: 'Modrá', value: '#BFDBFE' },
+    { name: 'Růžová', value: '#FBCFE8' },
+    { name: 'Oranžová', value: '#FED7AA' }
+  ];
+
+  function colorSwatchesHtml(colors, kind) {
+    return colors.map(function (c) {
+      var bg = c.value === 'transparent'
+        ? 'repeating-conic-gradient(#ddd 0% 25%, #fff 0% 50%) 50% / 10px 10px'
+        : c.value;
+      return '<button type="button" class="color-swatch" data-kind="' + kind + '" data-color="' + c.value + '" title="' + escapeHtml(c.name) + '" style="background:' + bg + '"></button>';
+    }).join('');
+  }
+
+  function sanitizeHtml(html) {
+    var doc;
+    try {
+      doc = new DOMParser().parseFromString('<div>' + (html || '') + '</div>', 'text/html');
+    } catch (e) { return ''; }
+    var root = doc.body.firstChild;
+    if (!root) return '';
+    (function walk(node) {
+      var child = node.firstChild;
+      while (child) {
+        var next = child.nextSibling;
+        if (child.nodeType === 1) {
+          var tag = child.tagName;
+          if (!ALLOWED_TAGS[tag]) {
+            while (child.firstChild) node.insertBefore(child.firstChild, child);
+            node.removeChild(child);
+            child = next;
+            continue;
+          }
+          Array.prototype.slice.call(child.attributes).forEach(function (attr) {
+            var name = attr.name.toLowerCase();
+            if (tag === 'A' && name === 'href') {
+              if (!/^https?:\/\//i.test(attr.value.trim())) child.removeAttribute(attr.name);
+            } else if (tag === 'IMG' && name === 'src') {
+              if (!/^(https?:|data:image\/)/i.test(attr.value.trim())) child.removeAttribute(attr.name);
+            } else if (tag === 'IMG' && name === 'alt') {
+              // keep
+            } else if (tag === 'IMG' && name === 'class') {
+              if (attr.value.trim() !== 'video-embed-thumb') child.removeAttribute(attr.name);
+            } else if (tag === 'A' && name === 'class') {
+              if (!/^video-embed( video-embed-fallback)?$/.test(attr.value.trim())) child.removeAttribute(attr.name);
+            } else if (tag === 'SPAN' && name === 'class') {
+              if (!/^(video-play-icon|video-embed-label)$/.test(attr.value.trim())) child.removeAttribute(attr.name);
+            } else if (name === 'style') {
+              var cleanedStyle = sanitizeStyleAttr(attr.value);
+              if (cleanedStyle) { child.setAttribute('style', cleanedStyle); } else { child.removeAttribute(attr.name); }
+            } else {
+              child.removeAttribute(attr.name);
+            }
+          });
+          if (tag === 'A') {
+            if (child.getAttribute('href')) { child.setAttribute('target', '_blank'); child.setAttribute('rel', 'noopener'); }
+          }
+          walk(child);
+        } else if (child.nodeType !== 3) {
+          node.removeChild(child);
+        }
+        child = next;
+      }
+    })(root);
+    return root.innerHTML;
+  }
+
+  function stripTags(html) {
+    return (html || '').replace(/<[^>]+>/g, ' ');
+  }
+
+  function makeExcerpt(html) {
+    var plain = stripTags(html).replace(/\s+/g, ' ').trim();
+    return plain.length > 160 ? plain.slice(0, 160).trim() + '…' : plain;
+  }
+
+  function formatDate(ts) {
+    try {
+      return new Date(ts).toLocaleDateString('cs-CZ', { day: 'numeric', month: 'long', year: 'numeric' });
+    } catch (e) { return ''; }
+  }
+
+  function readMinutes(html) {
+    var words = stripTags(html).trim().split(/\s+/).filter(Boolean).length;
+    return Math.max(1, Math.round(words / 200));
+  }
+
+  function formatMeta(post) {
+    return formatDate(post.createdAt) + '  •  ' + readMinutes(post.content) + ' min čtení';
+  }
+
+  function showToast(msg) {
+    els.toast.textContent = msg;
+    els.toast.classList.add('show');
+    setTimeout(function () { els.toast.classList.remove('show'); }, 2600);
+  }
+
+  function parseTags(str) {
+    return (str || '').split(',').map(function (t) { return t.trim(); }).filter(Boolean);
+  }
+
+  function genId() {
+    return 'p' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+  }
+
+  // ---------- data ----------
+
+  function loadInitialPosts() {
+    var el = document.getElementById('posts-data');
+    if (!el) return [];
+    try {
+      var raw = el.textContent.split('<\\/').join('</');
+      var parsed = JSON.parse(raw || '[]');
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (e) { return []; }
+  }
+
+  function buildDocument(posts) {
+    var dataJson = JSON.stringify(posts, null, 2).split('</').join('<\\/');
+    return '<!doctype html><html><head>' + HEAD_HTML + '</head><body>' + BODY_SHELL_HTML +
+      '<script id="posts-data" type="application/json">' + dataJson + '<\/script>' +
+      '<script>' + SELF_SCRIPT_SOURCE + '<\/script>' +
+      '</body></html>';
+  }
+
+  function publishState(newPosts) {
+    if (!state.artifactCap) {
+      return Promise.reject({ code: 'not_granted' });
+    }
+    var html = buildDocument(newPosts);
+    return state.artifactCap.publish(html).then(function (result) {
+      state.posts = newPosts;
+      renderAll();
+      return result;
+    });
+  }
+
+  function publishErrorMessage(err) {
+    var code = err && err.code;
+    if (code === 'not_writer' || code === 'not_granted') return 'Nemáš oprávnění tuto stránku upravovat.';
+    if (code === 'conflict') return 'Stránka byla mezitím změněna — načítám aktuální verzi.';
+    if (code === 'too_large') return 'Obsah je příliš velký na publikování.';
+    return 'Publikování se nezdařilo, zkus to prosím znovu.';
+  }
+
+  function persistNew(post) {
+    return publishState([post].concat(state.posts));
+  }
+
+  function persistUpdate(id, patch) {
+    var newPosts = state.posts.map(function (p) { return p.id === id ? Object.assign({}, p, patch) : p; });
+    return publishState(newPosts);
+  }
+
+  function persistDelete(id) {
+    var newPosts = state.posts.filter(function (p) { return p.id !== id; });
+    return publishState(newPosts);
+  }
+
+  // ---------- capabilities ----------
+
+  function applyAdminUI() {
+    els.newBtn.hidden = !state.isAdmin;
+    renderAll();
+    routeFromHash();
+  }
+
+  function initCapabilities() {
+    if (!(window.claude && window.claude.use)) { applyAdminUI(); return; }
+    window.claude.use('artifact').then(function (cap) {
+      state.artifactCap = cap;
+      return window.claude.use('user');
+    }).then(function (user) {
+      return user ? user.isOwner() : false;
+    }).then(function (isOwner) {
+      state.isAdmin = !!isOwner;
+      applyAdminUI();
+    }).catch(function () {
+      state.isAdmin = false;
+      applyAdminUI();
+    });
+  }
+
+  // ---------- rendering: list ----------
+
+  function visiblePosts() {
+    return state.isAdmin ? state.posts : state.posts.filter(function (p) { return p.status !== 'draft'; });
+  }
+
+  function allTags() {
+    var set = {};
+    visiblePosts().forEach(function (p) { (p.tags || []).forEach(function (t) { set[t] = true; }); });
+    return Object.keys(set).sort();
+  }
+
+  function filteredPosts() {
+    var q = state.search.trim().toLowerCase();
+    return visiblePosts().filter(function (p) {
+      if (state.filterTag && (p.tags || []).indexOf(state.filterTag) === -1) return false;
+      if (!q) return true;
+      var hay = (p.title + ' ' + (p.excerpt || '') + ' ' + stripTags(p.content || '')).toLowerCase();
+      return hay.indexOf(q) !== -1;
+    });
+  }
+
+  function renderTags() {
+    els.tagsRow.innerHTML = '';
+    var allChip = document.createElement('button');
+    allChip.className = 'chip' + (state.filterTag === null ? ' active' : '');
+    allChip.textContent = 'Vše';
+    allChip.onclick = function () { state.filterTag = null; renderAll(); };
+    els.tagsRow.appendChild(allChip);
+
+    allTags().forEach(function (tag) {
+      var chip = document.createElement('button');
+      chip.className = 'chip' + (state.filterTag === tag ? ' active' : '');
+      chip.textContent = tag;
+      chip.onclick = function () {
+        state.filterTag = state.filterTag === tag ? null : tag;
+        renderAll();
+      };
+      els.tagsRow.appendChild(chip);
+    });
+  }
+
+  function renderList() {
+    var posts = filteredPosts();
+    var totalVisible = visiblePosts().length;
+    els.list.innerHTML = '';
+    if (totalVisible > 0 && posts.length === 0) {
+      els.empty.hidden = false;
+      els.empty.querySelector('h2').textContent = 'Nic nenalezeno';
+      els.empty.querySelector('p').textContent = 'Zkus jiné hledání nebo zruš filtr štítku.';
+    } else if (totalVisible === 0) {
+      els.empty.hidden = false;
+      els.empty.querySelector('h2').textContent = 'Zatím žádné články';
+      els.empty.querySelector('p').textContent = 'Založ první příspěvek tlačítkem „Nový článek“ nahoře.';
+    } else {
+      els.empty.hidden = true;
+    }
+    posts.forEach(function (p) {
+      var item = document.createElement('button');
+      item.className = 'post-item';
+      item.innerHTML =
+        '<div class="post-meta">' + (p.status === 'draft' ? '<span class="draft-badge">Koncept</span>' : '') + formatMeta(p) + '</div>' +
+        '<div class="post-title">' + escapeHtml(p.title) + '</div>' +
+        '<div class="post-excerpt">' + escapeHtml(p.excerpt || makeExcerpt(p.content)) + '</div>' +
+        '<div class="tag-row">' + (p.tags || []).map(function (t) { return '<span class="tag">' + escapeHtml(t) + '</span>'; }).join('') + '</div>';
+      item.onclick = function () { navigateToPost(p.id); };
+      els.list.appendChild(item);
+    });
+  }
+
+  function renderAll() {
+    renderTags();
+    renderList();
+  }
+
+  // ---------- routing (list page vs. article page) ----------
+
+  function showListView() {
+    els.listView.hidden = false;
+    els.postView.hidden = true;
+  }
+
+  function showPostViewFor(post) {
+    els.listView.hidden = true;
+    els.postView.hidden = false;
+    renderPostPage(post);
+    window.scrollTo(0, 0);
+  }
+
+  function routeFromHash() {
+    var raw = decodeURIComponent(location.hash.replace(/^#/, ''));
+    var post = raw ? visiblePosts().find(function (p) { return p.id === raw; }) : null;
+    if (post) showPostViewFor(post); else showListView();
+  }
+
+  function navigateToPost(id) {
+    closeOverlay();
+    if (location.hash.replace(/^#/, '') === id) routeFromHash();
+    else location.hash = id;
+  }
+
+  function navigateToList() {
+    closeOverlay();
+    if (!location.hash || location.hash === '#') routeFromHash();
+    else location.hash = '';
+  }
+
+  window.addEventListener('hashchange', routeFromHash);
+
+  function goHome() {
+    state.filterTag = null;
+    state.search = '';
+    els.search.value = '';
+    renderAll();
+    navigateToList();
+  }
+
+  // ---------- article page ----------
+
+  function enhanceVideos(container) {
+    Array.prototype.forEach.call(container.querySelectorAll('a.video-embed'), function (a) {
+      var m = (a.getAttribute('href') || '').match(/[?&]v=([A-Za-z0-9_-]{11})/);
+      if (!m) return;
+      var vid = m[1];
+      if (a.classList.contains('video-embed-fallback')) {
+        a.className = 'video-embed';
+        a.innerHTML = '<img class="video-embed-thumb" src="https://img.youtube.com/vi/' + vid + '/hqdefault.jpg" alt="YouTube video"><span class="video-play-icon">&#9654;</span>';
+      }
+      a.addEventListener('click', function (e) {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
+        e.preventDefault();
+        var box = document.createElement('div');
+        box.className = 'video-embed-player';
+        var f = document.createElement('iframe');
+        f.src = 'https://www.youtube-nocookie.com/embed/' + vid + '?autoplay=1&rel=0';
+        f.title = 'YouTube video';
+        f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        f.setAttribute('allowfullscreen', '');
+        box.appendChild(f);
+        a.parentNode.replaceChild(box, a);
+      });
+    });
+  }
+
+  function renderPostPage(post) {
+    els.postView.innerHTML =
+      '<div class="post-toprow">' +
+        '<button class="btn btn-ghost" id="post-back-btn">← Zpět na výpis</button>' +
+        (state.isAdmin ? '<div class="row">' +
+          '<button class="btn btn-ghost" id="post-edit-btn">Upravit</button>' +
+          '<button class="btn btn-danger" id="post-del-btn">Smazat</button>' +
+        '</div>' : '') +
+      '</div>' +
+      '<div class="article-date">' + (post.status === 'draft' ? '<span class="draft-badge">Koncept</span>' : '') + formatMeta(post) + (post.updatedAt && post.updatedAt !== post.createdAt ? '  •  upraveno ' + formatDate(post.updatedAt) : '') + '</div>' +
+      '<h1 class="article-title">' + escapeHtml(post.title) + '</h1>' +
+      '<div class="article-tags">' + (post.tags || []).map(function (t) { return '<span class="tag">' + escapeHtml(t) + '</span>'; }).join('') + '</div>' +
+      '<div class="article-body">' + sanitizeHtml(post.content) + '</div>' +
+      '<div id="post-confirm-slot"></div>';
+    enhanceVideos(els.postView);
+    document.getElementById('post-back-btn').onclick = function () { navigateToList(); };
+    if (!state.isAdmin) return;
+    document.getElementById('post-edit-btn').onclick = function () { openEditor(post); };
+    document.getElementById('post-del-btn').onclick = function () {
+      var slot = document.getElementById('post-confirm-slot');
+      slot.innerHTML =
+        '<div class="confirm-box">' +
+          '<span>Smazat článek „' + escapeHtml(post.title) + '“? Tuto akci nelze vrátit.</span>' +
+          '<div class="row"><button class="btn btn-ghost" id="post-cancel-del">Zrušit</button><button class="btn btn-danger" id="post-confirm-del">Smazat trvale</button></div>' +
+        '</div>';
+      document.getElementById('post-cancel-del').onclick = function () { slot.innerHTML = ''; };
+      document.getElementById('post-confirm-del').onclick = function () {
+        var btn = document.getElementById('post-confirm-del');
+        btn.disabled = true;
+        btn.textContent = 'Mažu…';
+        persistDelete(post.id).then(function () {
+          showToast('Článek smazán a publikován.');
+          navigateToList();
+        }).catch(function (err) { showToast(publishErrorMessage(err)); btn.disabled = false; btn.textContent = 'Smazat trvale'; });
+      };
+    };
+  }
+
+  // ---------- overlay: editor + about ----------
+
+  var overlayRoot = null;
+  function closeOverlay() {
+    if (overlayRoot) { overlayRoot.remove(); overlayRoot = null; }
+  }
+
+  function isEditorEmpty(el) {
+    return el.textContent.trim() === '' && !el.querySelector('img');
+  }
+
+  function parseYouTubeId(url) {
+    var m = String(url || '').match(/(?:youtube\.com\/(?:watch\?(?:[^#]*&)?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+    return m ? m[1] : null;
+  }
+
+  function fetchYouTubeThumbDataUrl(vid) {
+    return fetch('https://img.youtube.com/vi/' + vid + '/hqdefault.jpg', { mode: 'no-cors' })
+      .then(function (res) { return res.blob(); })
+      .then(function (blob) {
+        if (!blob || blob.size === 0) throw new Error('empty_blob');
+        return new Promise(function (resolve, reject) {
+          var reader = new FileReader();
+          reader.onerror = function () { reject(new Error('read_failed')); };
+          reader.onload = function () { resolve(reader.result); };
+          reader.readAsDataURL(blob);
+        });
+      });
+  }
+
+  function videoEmbedHtml(vid, thumbDataUrl) {
+    var watchUrl = 'https://www.youtube.com/watch?v=' + vid;
+    if (thumbDataUrl) {
+      return '<a class="video-embed" href="' + watchUrl + '"><img class="video-embed-thumb" src="' + thumbDataUrl + '" alt="YouTube video"><span class="video-play-icon">&#9654;</span></a><p><br></p>';
+    }
+    return '<a class="video-embed video-embed-fallback" href="' + watchUrl + '"><span class="video-play-icon">&#9654;</span><span class="video-embed-label">Přehrát video na YouTube</span></a><p><br></p>';
+  }
+
+  function markVideoEmbedsNonEditable(root) {
+    Array.prototype.forEach.call(root.querySelectorAll('.video-embed'), function (el) {
+      el.setAttribute('contenteditable', 'false');
+    });
+  }
+
+  function readAndResizeImage(file) {
+    return new Promise(function (resolve, reject) {
+      var reader = new FileReader();
+      reader.onerror = function () { reject(new Error('read_failed')); };
+      reader.onload = function () {
+        var img = new Image();
+        img.onerror = function () { reject(new Error('decode_failed')); };
+        img.onload = function () {
+          var maxDim = 1280;
+          var w = img.naturalWidth, h = img.naturalHeight;
+          var scale = Math.min(1, maxDim / Math.max(w, h));
+          var outW = Math.max(1, Math.round(w * scale));
+          var outH = Math.max(1, Math.round(h * scale));
+          var canvas = document.createElement('canvas');
+          canvas.width = outW; canvas.height = outH;
+          var ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, outW, outH);
+          var dataUrl = file.type === 'image/png' ? canvas.toDataURL('image/png') : canvas.toDataURL('image/jpeg', 0.82);
+          resolve(dataUrl);
+        };
+        img.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function openEditor(existing) {
+    if (!state.isAdmin) return;
+    closeOverlay();
+    overlayRoot = document.createElement('div');
+    overlayRoot.className = 'overlay';
+    overlayRoot.innerHTML =
+      '<div class="panel">' +
+        '<div class="panel-top"><h2 style="font-size:1.3rem">' + (existing ? 'Upravit článek' : 'Nový článek') + '</h2>' +
+          '<button class="btn btn-ghost" id="cancel-edit">Zavřít</button></div>' +
+        '<div class="field"><label for="f-title">Titulek</label><input id="f-title" type="text" placeholder="Např. AI ve třídě: první zkušenosti" value="' + (existing ? escapeHtml(existing.title) : '') + '"></div>' +
+        '<div class="field"><label for="f-tags">Štítky (odděl čárkou)</label><input id="f-tags" type="text" placeholder="Např. AI, LMS, poznámky" value="' + (existing ? escapeHtml((existing.tags || []).join(', ')) : '') + '"></div>' +
+        '<div class="field"><label for="f-excerpt">Perex (nepovinné)</label><input id="f-excerpt" type="text" placeholder="Krátké shrnutí — jinak se vygeneruje samo" value="' + (existing ? escapeHtml(existing.excerpt || '') : '') + '"></div>' +
+        '<div class="field"><label>Text článku</label>' +
+          '<div class="editor-toolbar">' +
+            '<button type="button" class="toolbar-btn" data-cmd="bold" title="Tučně"><b>B</b></button>' +
+            '<button type="button" class="toolbar-btn" data-cmd="italic" title="Kurzíva"><i>I</i></button>' +
+            '<button type="button" class="toolbar-btn" data-cmd="underline" title="Podtržení"><u>U</u></button>' +
+            '<span class="toolbar-sep"></span>' +
+            '<button type="button" class="toolbar-btn" data-block="H2" title="Nadpis 2">H2</button>' +
+            '<button type="button" class="toolbar-btn" data-block="H3" title="Nadpis 3">H3</button>' +
+            '<button type="button" class="toolbar-btn" data-block="P" title="Normální text">Text</button>' +
+            '<span class="toolbar-sep"></span>' +
+            '<button type="button" class="toolbar-btn" data-cmd="insertUnorderedList" title="Odrážky">• Seznam</button>' +
+            '<button type="button" class="toolbar-btn" data-cmd="insertOrderedList" title="Číslovaný seznam">1. Seznam</button>' +
+            '<button type="button" class="toolbar-btn" data-block="BLOCKQUOTE" title="Citace">❝ Citace</button>' +
+            '<span class="toolbar-sep"></span>' +
+            '<button type="button" class="toolbar-btn" data-cmd="justifyLeft" title="Zarovnat vlevo">Vlevo</button>' +
+            '<button type="button" class="toolbar-btn" data-cmd="justifyCenter" title="Na střed">Střed</button>' +
+            '<button type="button" class="toolbar-btn" data-cmd="justifyRight" title="Zarovnat vpravo">Vpravo</button>' +
+            '<span class="toolbar-sep"></span>' +
+            '<button type="button" class="toolbar-btn" id="text-color-btn" title="Barva textu">Barva textu</button>' +
+            '<button type="button" class="toolbar-btn" id="highlight-color-btn" title="Podbarvení textu">Podbarvení</button>' +
+            '<span class="toolbar-sep"></span>' +
+            '<button type="button" class="toolbar-btn" id="link-btn" title="Vložit odkaz">Odkaz</button>' +
+            '<button type="button" class="toolbar-btn" id="image-btn" title="Vložit obrázek">Obrázek</button>' +
+            '<button type="button" class="toolbar-btn" id="video-btn" title="Vložit YouTube video">▶ YouTube</button>' +
+            '<input type="file" accept="image/*" id="image-file-input" hidden>' +
+          '</div>' +
+          '<div class="link-popover" id="link-popover" hidden>' +
+            '<input type="text" id="link-url-input" placeholder="https://…">' +
+            '<button type="button" class="btn btn-ghost" id="link-cancel">Zrušit</button>' +
+            '<button type="button" class="btn btn-primary" id="link-apply">Vložit</button>' +
+          '</div>' +
+          '<div class="link-popover" id="video-popover" hidden>' +
+            '<input type="text" id="video-url-input" placeholder="Odkaz na YouTube video…">' +
+            '<button type="button" class="btn btn-ghost" id="video-cancel">Zrušit</button>' +
+            '<button type="button" class="btn btn-primary" id="video-apply">Vložit</button>' +
+          '</div>' +
+          '<div class="color-popover" id="text-color-popover" hidden>' + colorSwatchesHtml(TEXT_COLORS, 'text') + '</div>' +
+          '<div class="color-popover" id="highlight-color-popover" hidden>' + colorSwatchesHtml(HIGHLIGHT_COLORS, 'highlight') + '</div>' +
+          '<div class="rich-editor-wrap">' +
+            '<div class="rich-editor" id="f-content" contenteditable="true"></div>' +
+            '<span class="rich-editor-placeholder" id="f-content-placeholder">Piš text článku…</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="row-end">' +
+          '<button class="btn btn-ghost" id="draft-btn">Uložit jako koncept</button>' +
+          '<button class="btn btn-primary" id="save-btn">' + (existing && existing.status !== 'draft' ? 'Uložit a publikovat' : 'Publikovat') + '</button>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(overlayRoot);
+    overlayRoot.addEventListener('click', function (e) { if (e.target === overlayRoot) closeOverlay(); });
+
+    var contentEl = document.getElementById('f-content');
+    var placeholderEl = document.getElementById('f-content-placeholder');
+    var linkPopover = document.getElementById('link-popover');
+    var linkUrlInput = document.getElementById('link-url-input');
+    var videoPopover = document.getElementById('video-popover');
+    var videoUrlInput = document.getElementById('video-url-input');
+    var savedRange = null;
+
+    try { document.execCommand('defaultParagraphSeparator', false, 'p'); } catch (e) {}
+    try { document.execCommand('styleWithCSS', false, true); } catch (e) {}
+    contentEl.innerHTML = existing ? sanitizeHtml(existing.content) : '';
+    markVideoEmbedsNonEditable(contentEl);
+
+    function updatePlaceholder() { placeholderEl.hidden = !isEditorEmpty(contentEl); }
+    updatePlaceholder();
+    contentEl.addEventListener('input', updatePlaceholder);
+
+    Array.prototype.forEach.call(overlayRoot.querySelectorAll('.toolbar-btn[data-cmd]'), function (btn) {
+      btn.onclick = function () {
+        contentEl.focus();
+        document.execCommand(btn.getAttribute('data-cmd'), false, null);
+        updatePlaceholder();
+      };
+    });
+    Array.prototype.forEach.call(overlayRoot.querySelectorAll('.toolbar-btn[data-block]'), function (btn) {
+      btn.onclick = function () {
+        contentEl.focus();
+        document.execCommand('formatBlock', false, btn.getAttribute('data-block'));
+        updatePlaceholder();
+      };
+    });
+
+    document.getElementById('link-btn').onclick = function () {
+      var sel = window.getSelection();
+      if (!(sel.rangeCount > 0 && contentEl.contains(sel.anchorNode) && !sel.isCollapsed)) {
+        showToast('Nejdřív vyber text, který se má stát odkazem.');
+        return;
+      }
+      savedRange = sel.getRangeAt(0).cloneRange();
+      linkUrlInput.value = '';
+      textColorPopover.hidden = true;
+      highlightColorPopover.hidden = true;
+      videoPopover.hidden = true;
+      linkPopover.hidden = false;
+      linkUrlInput.focus();
+    };
+    document.getElementById('link-cancel').onclick = function () { linkPopover.hidden = true; };
+    document.getElementById('link-apply').onclick = function () {
+      var url = linkUrlInput.value.trim();
+      if (!/^https?:\/\//i.test(url)) { showToast('Zadej platnou adresu začínající https://'); return; }
+      contentEl.focus();
+      if (savedRange) {
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(savedRange);
+      }
+      document.execCommand('createLink', false, url);
+      linkPopover.hidden = true;
+    };
+
+    var textColorPopover = document.getElementById('text-color-popover');
+    var highlightColorPopover = document.getElementById('highlight-color-popover');
+    var savedColorRange = null;
+
+    function hidePopovers() {
+      linkPopover.hidden = true;
+      textColorPopover.hidden = true;
+      highlightColorPopover.hidden = true;
+      videoPopover.hidden = true;
+    }
+
+    document.getElementById('text-color-btn').onclick = function () {
+      var sel = window.getSelection();
+      if (!(sel.rangeCount > 0 && contentEl.contains(sel.anchorNode))) {
+        showToast('Nejdřív klikni do textu nebo vyber text.');
+        return;
+      }
+      savedColorRange = sel.getRangeAt(0).cloneRange();
+      hidePopovers();
+      textColorPopover.hidden = false;
+    };
+    document.getElementById('highlight-color-btn').onclick = function () {
+      var sel = window.getSelection();
+      if (!(sel.rangeCount > 0 && contentEl.contains(sel.anchorNode))) {
+        showToast('Nejdřív klikni do textu nebo vyber text.');
+        return;
+      }
+      savedColorRange = sel.getRangeAt(0).cloneRange();
+      hidePopovers();
+      highlightColorPopover.hidden = false;
+    };
+    Array.prototype.forEach.call(overlayRoot.querySelectorAll('.color-swatch'), function (btn) {
+      btn.onclick = function () {
+        var color = btn.getAttribute('data-color');
+        var kind = btn.getAttribute('data-kind');
+        contentEl.focus();
+        if (savedColorRange) {
+          var sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(savedColorRange);
+        }
+        if (kind === 'text') {
+          document.execCommand('foreColor', false, color);
+        } else {
+          var ok = false;
+          try { ok = document.execCommand('hiliteColor', false, color); } catch (e) {}
+          if (!ok) { try { document.execCommand('backColor', false, color); } catch (e) {} }
+        }
+        hidePopovers();
+        updatePlaceholder();
+      };
+    });
+
+    var imageFileInput = document.getElementById('image-file-input');
+    document.getElementById('image-btn').onclick = function () {
+      var sel = window.getSelection();
+      if (sel.rangeCount > 0 && contentEl.contains(sel.anchorNode)) savedRange = sel.getRangeAt(0).cloneRange();
+      imageFileInput.value = '';
+      imageFileInput.click();
+    };
+    imageFileInput.onchange = function () {
+      var file = imageFileInput.files && imageFileInput.files[0];
+      if (!file) return;
+      if (!/^image\//.test(file.type)) { showToast('Vyber prosím obrázek.'); return; }
+      readAndResizeImage(file).then(function (dataUrl) {
+        contentEl.focus();
+        if (savedRange) {
+          var sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(savedRange);
+        }
+        document.execCommand('insertImage', false, dataUrl);
+        updatePlaceholder();
+      }).catch(function () { showToast('Obrázek se nepodařilo načíst.'); });
+    };
+
+    document.getElementById('video-btn').onclick = function () {
+      var sel = window.getSelection();
+      if (sel.rangeCount > 0 && contentEl.contains(sel.anchorNode)) savedRange = sel.getRangeAt(0).cloneRange();
+      videoUrlInput.value = '';
+      linkPopover.hidden = true;
+      textColorPopover.hidden = true;
+      highlightColorPopover.hidden = true;
+      videoPopover.hidden = false;
+      videoUrlInput.focus();
+    };
+    document.getElementById('video-cancel').onclick = function () { videoPopover.hidden = true; };
+    document.getElementById('video-apply').onclick = function () {
+      var vid = parseYouTubeId(videoUrlInput.value.trim());
+      if (!vid) { showToast('Zadej platnou adresu YouTube videa.'); return; }
+      var rangeToRestore = savedRange;
+      var applyBtn = document.getElementById('video-apply');
+      applyBtn.disabled = true;
+      applyBtn.textContent = 'Vkládám…';
+      videoPopover.hidden = true;
+      function insertEmbed(thumbDataUrl) {
+        contentEl.focus();
+        if (rangeToRestore) {
+          var sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(rangeToRestore);
+        }
+        document.execCommand('insertHTML', false, videoEmbedHtml(vid, thumbDataUrl));
+        markVideoEmbedsNonEditable(contentEl);
+        updatePlaceholder();
+        applyBtn.disabled = false;
+        applyBtn.textContent = 'Vložit';
+      }
+      fetchYouTubeThumbDataUrl(vid).then(insertEmbed).catch(function () { insertEmbed(null); });
+    };
+
+    document.getElementById('cancel-edit').onclick = function () { closeOverlay(); };
+
+    function runSave(status) {
+      var title = document.getElementById('f-title').value.trim();
+      var contentHtml = sanitizeHtml(contentEl.innerHTML);
+      if (!title || isEditorEmpty(contentEl)) { showToast('Vyplň aspoň titulek a text.'); return; }
+      var tags = parseTags(document.getElementById('f-tags').value);
+      var excerptInput = document.getElementById('f-excerpt').value.trim();
+      var excerpt = excerptInput || makeExcerpt(contentHtml);
+      var saveBtn = document.getElementById('save-btn');
+      var draftBtn = document.getElementById('draft-btn');
+      var busyBtn = status === 'draft' ? draftBtn : saveBtn;
+      var busyLabel = busyBtn.textContent;
+      saveBtn.disabled = true;
+      draftBtn.disabled = true;
+      busyBtn.textContent = 'Publikuji…';
+      var patch = { title: title, tags: tags, excerpt: excerpt, content: contentHtml, status: status, updatedAt: Date.now() };
+      var promise;
+      if (existing) {
+        promise = persistUpdate(existing.id, patch);
+      } else {
+        patch.id = genId();
+        patch.createdAt = Date.now();
+        promise = persistNew(patch);
+      }
+      promise.then(function () {
+        showToast(status === 'draft' ? 'Koncept uložen.' : 'Článek publikován.');
+        navigateToPost(patch.id || existing.id);
+      }).catch(function (err) {
+        showToast(publishErrorMessage(err));
+        saveBtn.disabled = false;
+        draftBtn.disabled = false;
+        busyBtn.textContent = busyLabel;
+      });
+    }
+
+    document.getElementById('save-btn').onclick = function () { runSave('published'); };
+    document.getElementById('draft-btn').onclick = function () { runSave('draft'); };
+  }
+
+  function openAbout() {
+    closeOverlay();
+    overlayRoot = document.createElement('div');
+    overlayRoot.className = 'overlay';
+    overlayRoot.innerHTML =
+      '<div class="panel">' +
+        '<div class="panel-top"><h2 style="font-size:1.3rem">O blogu</h2>' +
+          '<button class="btn btn-ghost" id="close-about">Zavřít</button></div>' +
+        '<div class="about-body">' +
+          '<p>EdTech blog je veřejný blog o vzdělávacích technologiích — místo pro poznámky a postřehy o nástrojích, LMS platformách, umělé inteligenci ve výuce a dalších změnách, které technologie přinášejí do vzdělávání.</p>' +
+          '<p>Číst může kdokoliv, přidávat a upravovat články může jen správce téhle stránky.</p>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(overlayRoot);
+    overlayRoot.addEventListener('click', function (e) { if (e.target === overlayRoot) closeOverlay(); });
+    document.getElementById('close-about').onclick = closeOverlay;
+  }
+
+  els.newBtn.onclick = function () { openEditor(null); };
+  els.homeLink.onclick = function (e) { e.preventDefault(); goHome(); };
+  els.articlesLink.onclick = function (e) { e.preventDefault(); goHome(); };
+  els.aboutLink.onclick = function (e) { e.preventDefault(); openAbout(); };
+  els.search.oninput = function () { state.search = els.search.value; renderList(); };
+
+  state.posts = loadInitialPosts();
+  renderAll();
+  routeFromHash();
+  initCapabilities();
+})();
+</script></body></html>
