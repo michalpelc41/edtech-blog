@@ -47,6 +47,14 @@
   .brand-sans { font-weight: 800; }
   .brand-tagline { max-width: 560px; font-family: var(--serif); font-size: 1.33rem; line-height: 1.4; color: #2B3A4F; }
   @media (min-width: 721px) { .brand-tagline { max-width: none; white-space: nowrap; font-size: clamp(0.85rem, 1.9vw, 1.33rem); } }
+  .compact nav.topbar { flex-direction: row; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px 20px; padding-block: 18px 0; }
+  .compact .nav-links { order: 0; align-self: auto; }
+  .compact .brand { flex-direction: row; align-items: center; gap: 12px; text-align: left; }
+  .compact .brand-logo { width: 38px; height: 38px; }
+  .compact .brand-text { align-items: flex-start; gap: 0; }
+  .compact .brand a { font-size: 1.45rem; letter-spacing: -0.03em; }
+  .compact .brand-tagline { display: none; }
+  .compact .post-view { margin-top: 18px; }
 
   .btn {
     font-family: inherit;
@@ -122,7 +130,7 @@
   .post-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 16px; }
   .post-head-text { min-width: 0; }
   .post-title { font-size: 1.25rem; font-weight: 700; line-height: 1.15; margin-bottom: 6px; overflow-wrap: anywhere; }
-  .post-meta { font-family: 'JetBrains Mono', ui-monospace, monospace; color: var(--ink-soft); font-size: 0.78rem; }
+  .post-meta { font-family: 'JetBrains Mono', ui-monospace, monospace; color: var(--accent); font-size: 0.78rem; }
   .post-excerpt { font-family: var(--serif); color: var(--ink); font-size: 1.08rem; line-height: 1.45; margin-bottom: 18px; overflow-wrap: anywhere; }
   .post-item .tag-row { margin-top: auto; }
   .tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -280,12 +288,15 @@
     "title": "Jak by se měly děti učit s AI | Priya Lakhani | TED",
     "tags": [
       "AI",
-      "Výuka"
+      "Výuka",
+      "Novinka",
+      "Přednáška",
+      "Myšlenky"
     ],
     "excerpt": "TED talk představuje, jak by AI měla podporovat hluboké učení dětí (a dospělých) místo toho, aby jen nabízela rychlé odpovědi, a vysvětluje, proč je \"mentální námaha\" klíčová pro trvalé porozumění.",
     "content": "<h2 style=\"color: rgb(31, 34, 37)\"><span>Proč současné vzdělávání selhává?<\/span><\/h2><p style=\"color: rgb(0, 0, 0)\"><span style=\"color: rgb(31, 34, 37)\"><span style=\"font-weight: bold\">Priya Lakhani<\/span> začíná tím, že zjistila, jak závažné jsou problémy i v bohatých systémech – <span style=\"background-color: rgb(253, 230, 138)\">v UK odchází asi 20% žáků ze střední školy bez dostatečných dovedností v čtení a psaní, přestože mají školy i kvalifikované učitele.<\/span>&nbsp;<\/span><\/p><p style=\"border: 2px solid rgb(47, 99, 235); padding: 12px 16px; border-radius: 10px\"><span style=\"font-weight: bold; color: rgb(47, 99, 235)\">Učitelé jsou přetížení: 74% z nich chce do tří let odejít zejména kvůli zátěži spojené s hodnocením a sledováním pokroku každého žáka – „učí ve dne, v noci jsou datoví analytici\".<\/span><\/p><p><a class=\"video-embed video-embed-fallback\" href=\"https://www.youtube.com/watch?v=YBH8rQv4aTQ\" target=\"_blank\" rel=\"noopener\"><span class=\"video-play-icon\">▶<\/span><span class=\"video-embed-label\">Přehrát video na YouTube<\/span><\/a><\/p><h2><span style=\"color: rgb(31, 34, 37); font-weight: 800\">Co může AI ve třídě dělat<\/span><\/h2><p style=\"color: rgb(0, 0, 0)\"><span style=\"color: rgb(31, 34, 37)\">Místo \"one-size-fits-all\" výuky navrhuje adaptivní systémy, které kombinují umělou inteligenci s neurovědami a didaktikou, aby pochopily, jak se učí každý jednotlivý žák. Její tým vyvinul platformu, kterou používají žáci ve více než 140 zemích a která na základě desítek miliard datových bodů dokáže personalizovat obsah a dávat učitelům srozumitelné, cílené přehledy o učení.<\/span><span><\/span><\/p><h2 style=\"color: rgb(0, 0, 0)\"><span style=\"color: rgb(31, 34, 37)\">Jak děti AI skutečně používají<\/span><\/h2><p style=\"color: rgb(0, 0, 0)\"><span style=\"color: rgb(31, 34, 37)\">Z uživatelské zpětné vazby ukazuje dva póly: někteří žáci AI chválí jako pomoc, která jim umožňuje dosáhnout dříve \"nemožného\", jiní ji nenávidí, protože je nutí dělat úkoly, a dokonce ji prosí o \"tlačítko na udělání práce za ně\". To odpovídá průzkumům, podle nichž přibližně pětina dětí přiznává, že používá generativní AI k tomu, aby udělala úkol úplně za ně - tedy k aktivnímu vyhýbání se učení.<\/span><span><\/span><\/p><h3 style=\"color: rgb(0, 0, 0)\"><span style=\"color: rgb(31, 34, 37)\">Iluze kompetence a \"zkratky\"<\/span><\/h3><p style=\"color: rgb(0, 0, 0)\"><span style=\"color: rgb(31, 34, 37)\">Při prvním použití nástrojů jako ChatGPT mají lidé pocit euforie a dojmu, že už nikdy nebudou muset \"opravdu pracovat\". Když se ale setkají s halucinacemi systému a chybami v praxi (například citovaný případ právníka v soudní síni), dochází k vystřízlivění a uvědomění, že krátké cesty nenahrazují vlastní myšlení - jen ho doplňují.<\/span><span><\/span><\/p>",
     "status": "published",
-    "updatedAt": 1791054489181,
+    "updatedAt": 1791055258645,
     "id": "pmukyd87ygwr460",
     "createdAt": 1790582127838
   },
@@ -293,12 +304,13 @@
     "id": "p1",
     "title": "Budoucnost vzdělávání v digitálním věku",
     "tags": [
-      "AI"
+      "AI",
+      "Myšlenky"
     ],
     "excerpt": "Personalizované učení umožňuje přizpůsobit tempo a styl výuky každému studentovi.",
     "content": "<p><strong>Hlavní myšlenka<\/strong><br><span style=\"background-color: rgb(253, 230, 138)\">Vzdělávání prochází zásadní transformací.<\/span> Digitální nástroje již nejsou pouze doplňkem tradičních metod — stávají se jejich nedílnou součástí.<\/p><p>Personalizované učení umožňuje přizpůsobit tempo a styl výuky každému studentovi.<\/p><p>Klíčem k úspěchu je balance. Integrovat digitální nástroje tam, kde přinášejí hodnotu, a zachovat prostor pro autentickou lidskou interakci.<\/p>",
     "createdAt": 1790526334350,
-    "updatedAt": 1790582032598,
+    "updatedAt": 1791055766623,
     "status": "published"
   },
   {
@@ -367,6 +379,14 @@
   .brand-sans { font-weight: 800; }
   .brand-tagline { max-width: 560px; font-family: var(--serif); font-size: 1.33rem; line-height: 1.4; color: #2B3A4F; }
   @media (min-width: 721px) { .brand-tagline { max-width: none; white-space: nowrap; font-size: clamp(0.85rem, 1.9vw, 1.33rem); } }
+  .compact nav.topbar { flex-direction: row; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px 20px; padding-block: 18px 0; }
+  .compact .nav-links { order: 0; align-self: auto; }
+  .compact .brand { flex-direction: row; align-items: center; gap: 12px; text-align: left; }
+  .compact .brand-logo { width: 38px; height: 38px; }
+  .compact .brand-text { align-items: flex-start; gap: 0; }
+  .compact .brand a { font-size: 1.45rem; letter-spacing: -0.03em; }
+  .compact .brand-tagline { display: none; }
+  .compact .post-view { margin-top: 18px; }
 
   .btn {
     font-family: inherit;
@@ -442,7 +462,7 @@
   .post-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 16px; }
   .post-head-text { min-width: 0; }
   .post-title { font-size: 1.25rem; font-weight: 700; line-height: 1.15; margin-bottom: 6px; overflow-wrap: anywhere; }
-  .post-meta { font-family: 'JetBrains Mono', ui-monospace, monospace; color: var(--ink-soft); font-size: 0.78rem; }
+  .post-meta { font-family: 'JetBrains Mono', ui-monospace, monospace; color: var(--accent); font-size: 0.78rem; }
   .post-excerpt { font-family: var(--serif); color: var(--ink); font-size: 1.08rem; line-height: 1.45; margin-bottom: 18px; overflow-wrap: anywhere; }
   .post-item .tag-row { margin-top: auto; }
   .tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -598,9 +618,10 @@
 
 <div class="toast" id="toast"></div>`;
 
-  var state = { posts: [], filterTag: null, search: '', isAdmin: false, artifactCap: null };
+  var state = { posts: [], filterTags: [], search: '', isAdmin: false, artifactCap: null };
 
   var els = {
+    shell: document.getElementById('app-shell'),
     listView: document.getElementById('list-view'),
     postView: document.getElementById('post-view'),
     list: document.getElementById('post-list'),
@@ -874,7 +895,7 @@
   function filteredPosts() {
     var q = state.search.trim().toLowerCase();
     return visiblePosts().slice().sort(function (a, b) { return (b.createdAt || 0) - (a.createdAt || 0); }).filter(function (p) {
-      if (state.filterTag && (p.tags || []).indexOf(state.filterTag) === -1) return false;
+      if (!state.filterTags.every(function (t) { return (p.tags || []).indexOf(t) !== -1; })) return false;
       if (!q) return true;
       var hay = (p.title + ' ' + (p.excerpt || '') + ' ' + stripTags(p.content || '')).toLowerCase();
       return hay.indexOf(q) !== -1;
@@ -883,18 +904,23 @@
 
   function renderTags() {
     els.tagsRow.innerHTML = '';
+    var known = allTags();
+    state.filterTags = state.filterTags.filter(function (t) { return known.indexOf(t) !== -1; });
     var allChip = document.createElement('button');
-    allChip.className = 'chip' + (state.filterTag === null ? ' active' : '');
+    allChip.className = 'chip' + (state.filterTags.length === 0 ? ' active' : '');
     allChip.textContent = 'Vše';
-    allChip.onclick = function () { state.filterTag = null; renderAll(); };
+    allChip.onclick = function () { state.filterTags = []; renderAll(); };
     els.tagsRow.appendChild(allChip);
 
     allTags().forEach(function (tag) {
       var chip = document.createElement('button');
-      chip.className = 'chip' + (state.filterTag === tag ? ' active' : '');
+      chip.className = 'chip' + (state.filterTags.indexOf(tag) !== -1 ? ' active' : '');
       chip.textContent = tag;
+      chip.setAttribute('aria-pressed', state.filterTags.indexOf(tag) !== -1 ? 'true' : 'false');
       chip.onclick = function () {
-        state.filterTag = state.filterTag === tag ? null : tag;
+        var i = state.filterTags.indexOf(tag);
+        if (i === -1) state.filterTags = state.filterTags.concat(tag);
+        else state.filterTags = state.filterTags.filter(function (t) { return t !== tag; });
         renderAll();
       };
       els.tagsRow.appendChild(chip);
@@ -908,7 +934,7 @@
     if (totalVisible > 0 && posts.length === 0) {
       els.empty.hidden = false;
       els.empty.querySelector('h2').textContent = 'Nic nenalezeno';
-      els.empty.querySelector('p').textContent = 'Zkus jiné hledání nebo zruš filtr štítku.';
+      els.empty.querySelector('p').textContent = 'Zkus jiné hledání nebo odeber některý ze štítků.';
     } else if (totalVisible === 0) {
       els.empty.hidden = false;
       els.empty.querySelector('h2').textContent = 'Zatím žádné články';
@@ -939,11 +965,13 @@
   // ---------- routing (list page vs. article page) ----------
 
   function showListView() {
+    els.shell.classList.remove('compact');
     els.listView.hidden = false;
     els.postView.hidden = true;
   }
 
   function showPostViewFor(post) {
+    els.shell.classList.add('compact');
     els.listView.hidden = true;
     els.postView.hidden = false;
     renderPostPage(post);
@@ -971,7 +999,7 @@
   window.addEventListener('hashchange', routeFromHash);
 
   function goHome() {
-    state.filterTag = null;
+    state.filterTags = [];
     state.search = '';
     els.search.value = '';
     renderAll();
