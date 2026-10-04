@@ -130,8 +130,9 @@
     .post-item { padding: 24px 22px; }
     .post-cover { width: calc(100% + 44px); margin: -24px -22px 18px; }
   }
-  .post-cover { display: block; flex: 0 0 auto; width: calc(100% + 64px); margin: -30px -32px 20px; aspect-ratio: 16 / 9; object-fit: cover; background: var(--surface-2); border-radius: 24px 24px 0 0; }
-  .post-view .article-cover { display: block; width: calc(100% - max(0px, (100% - 760px) / 2)); margin: 0 0 24px max(0px, calc((100% - 760px) / 2)); aspect-ratio: 16 / 9; object-fit: cover; background: var(--surface-2); border-radius: 16px; }
+  .post-cover { display: block; flex: 0 0 auto; max-width: none; width: calc(100% + 64px); margin: -30px -32px 20px; aspect-ratio: 16 / 9; object-fit: cover; background: var(--surface-2); border-radius: 24px 24px 0 0; }
+  .post-view .article-cover { display: block; max-width: none; width: calc(100% - max(0px, (100% - 760px) / 2)); margin: 0 0 24px max(0px, calc((100% - 760px) / 2)); aspect-ratio: 16 / 9; object-fit: cover; background: var(--surface-2); border-radius: 16px; }
+  @media (max-width: 720px) { .post-cover { width: calc(100% + 44px); margin: -24px -22px 18px; } }
   .cover-preview img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 10px; margin-bottom: 8px; background: var(--surface-2); }
   .post-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 12px; }
   .post-head-text { min-width: 0; }
@@ -538,8 +539,9 @@
     .post-item { padding: 24px 22px; }
     .post-cover { width: calc(100% + 44px); margin: -24px -22px 18px; }
   }
-  .post-cover { display: block; flex: 0 0 auto; width: calc(100% + 64px); margin: -30px -32px 20px; aspect-ratio: 16 / 9; object-fit: cover; background: var(--surface-2); border-radius: 24px 24px 0 0; }
-  .post-view .article-cover { display: block; width: calc(100% - max(0px, (100% - 760px) / 2)); margin: 0 0 24px max(0px, calc((100% - 760px) / 2)); aspect-ratio: 16 / 9; object-fit: cover; background: var(--surface-2); border-radius: 16px; }
+  .post-cover { display: block; flex: 0 0 auto; max-width: none; width: calc(100% + 64px); margin: -30px -32px 20px; aspect-ratio: 16 / 9; object-fit: cover; background: var(--surface-2); border-radius: 24px 24px 0 0; }
+  .post-view .article-cover { display: block; max-width: none; width: calc(100% - max(0px, (100% - 760px) / 2)); margin: 0 0 24px max(0px, calc((100% - 760px) / 2)); aspect-ratio: 16 / 9; object-fit: cover; background: var(--surface-2); border-radius: 16px; }
+  @media (max-width: 720px) { .post-cover { width: calc(100% + 44px); margin: -24px -22px 18px; } }
   .cover-preview img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 10px; margin-bottom: 8px; background: var(--surface-2); }
   .post-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 12px; }
   .post-head-text { min-width: 0; }
