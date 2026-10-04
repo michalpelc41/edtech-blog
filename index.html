@@ -231,7 +231,8 @@
   .color-swatch:hover { border-color: var(--ink-soft); }
 
   .article-date { font-family: 'JetBrains Mono', ui-monospace, monospace; color: var(--accent); font-size: 0.8rem; margin-bottom: 10px; }
-  .article-title { font-size: 1.9rem; line-height: 1.1; margin-bottom: 12px; }
+  .article-title { font-size: 1.9rem; line-height: 1.1; margin-bottom: 12px; text-wrap: wrap; }
+  .post-view .article-title { max-width: none; margin-inline: max(0px, calc((100% - 760px) / 2)) 0; }
   @media (max-width: 720px) { .article-title { line-height: 1.05; } }
   .article-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 24px; }
   .article-body { font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif; font-size: 1.15rem; line-height: 1.45; }
@@ -627,7 +628,8 @@
   .color-swatch:hover { border-color: var(--ink-soft); }
 
   .article-date { font-family: 'JetBrains Mono', ui-monospace, monospace; color: var(--accent); font-size: 0.8rem; margin-bottom: 10px; }
-  .article-title { font-size: 1.9rem; line-height: 1.1; margin-bottom: 12px; }
+  .article-title { font-size: 1.9rem; line-height: 1.1; margin-bottom: 12px; text-wrap: wrap; }
+  .post-view .article-title { max-width: none; margin-inline: max(0px, calc((100% - 760px) / 2)) 0; }
   @media (max-width: 720px) { .article-title { line-height: 1.05; } }
   .article-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 24px; }
   .article-body { font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif; font-size: 1.15rem; line-height: 1.45; }
