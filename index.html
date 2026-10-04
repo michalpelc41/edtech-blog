@@ -31,6 +31,7 @@
     line-height: 1.5;
   }
   .wrap { max-width: 1000px; margin: 0 auto; }
+  @media (max-width: 720px) { body { padding-inline: 12px; } }
 
   h1, h2, h3 { font-weight: 800; letter-spacing: -0.02em; text-wrap: balance; margin: 0; }
   .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
@@ -123,15 +124,16 @@
     transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
   .post-item:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(30, 60, 100, 0.12); }
+  .post-item:hover .post-title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
   @media (max-width: 720px) {
     .post-list { grid-template-columns: minmax(0, 1fr); }
     .post-item { padding: 24px 22px; }
   }
-  .post-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 16px; }
+  .post-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 12px; }
   .post-head-text { min-width: 0; }
-  .post-title { font-size: 1.25rem; font-weight: 700; line-height: 1.15; margin-bottom: 6px; overflow-wrap: anywhere; }
+  .post-title { font-size: 1.25rem; font-weight: 700; line-height: 1.15; margin-bottom: 12px; overflow-wrap: anywhere; }
   .post-meta { font-family: 'JetBrains Mono', ui-monospace, monospace; color: var(--accent); font-size: 0.78rem; }
-  .post-excerpt { font-family: 'Inter', system-ui, sans-serif; color: var(--ink); font-size: 0.95rem; line-height: 1.5; margin-bottom: 18px; overflow-wrap: anywhere; }
+  .post-excerpt { font-family: 'Inter', system-ui, sans-serif; color: var(--ink); font-size: 0.95rem; line-height: 1.5; margin-bottom: 18px; overflow-wrap: anywhere; white-space: pre-line; }
   .post-item .tag-row { margin-top: auto; }
   .tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
   .tag { font-size: 0.8rem; font-weight: 500; color: var(--chip-ink); background: var(--chip-bg); padding: 5px 12px; border-radius: 999px; }
@@ -157,8 +159,7 @@
     background: color-mix(in srgb, var(--bg) 85%, transparent);
     backdrop-filter: blur(2px);
     display: flex; justify-content: center;
-    padding: 32px 20px calc(32px + env(safe-area-inset-bottom, 0px));
-    padding-top: calc(32px + env(safe-area-inset-top, 0px));
+    padding: 0 20px calc(32px + env(safe-area-inset-bottom, 0px));
     overflow-y: auto;
     z-index: 10;
   }
@@ -169,6 +170,7 @@
     max-width: 720px;
     width: 100%;
     height: fit-content;
+    margin-top: calc(32px + env(safe-area-inset-top, 0px));
     padding: 28px;
     box-shadow: 0 12px 32px rgba(0,0,0,0.1);
   }
@@ -184,14 +186,21 @@
     border-radius: 8px;
     padding: 10px 12px;
   }
-  .field input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .field input:focus, .field textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .field textarea { font-family: 'Bricolage Grotesque', sans-serif; font-size: 0.95rem; line-height: 1.45; color: var(--ink); background: var(--surface-2); border: 1.5px solid var(--border); border-radius: 8px; padding: 10px 12px; min-height: 76px; resize: vertical; }
   .row { display: flex; gap: 10px; flex-wrap: wrap; }
   .row-end { display: flex; gap: 10px; justify-content: flex-end; margin-top: 8px; }
 
   .editor-toolbar { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; padding: 8px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; }
-  .toolbar-btn { font-family: inherit; font-size: 0.82rem; font-weight: 500; padding: 6px 10px; border-radius: 6px; border: 1px solid transparent; background: transparent; color: var(--ink); cursor: pointer; }
+  .toolbar-btn { font-family: inherit; font-size: 0.82rem; font-weight: 500; padding: 7px 10px; border-radius: 6px; border: 1px solid transparent; background: transparent; color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; line-height: 1; }
+  .toolbar-btn svg { width: 16px; height: 16px; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .toolbar-btn:hover { background: var(--bg); border-color: var(--border); }
   .toolbar-sep { width: 1px; background: var(--border); margin: 2px 4px; }
+  .editor-sticky { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); padding: 6px 0 2px; margin-bottom: 4px; }
+  .editor-sticky .editor-toolbar { margin-bottom: 8px; }
+  .link-popover textarea { flex: 1 1 100%; min-height: 120px; max-height: 40vh; resize: vertical; background: var(--surface-2); border: 1.5px solid var(--border); border-radius: 8px; padding: 10px 12px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.82rem; line-height: 1.5; color: var(--ink); }
+  .link-popover .md-hint { flex: 1 1 100%; font-size: 0.78rem; color: var(--ink-soft); }
+  @media (max-width: 720px) { .editor-sticky .editor-toolbar { flex-wrap: nowrap; overflow-x: auto; } .editor-sticky .toolbar-btn { flex: 0 0 auto; white-space: nowrap; } }
   .rich-editor-wrap { position: relative; }
   .rich-editor { min-height: 240px; line-height: 1.6; font-family: 'Bricolage Grotesque', sans-serif; font-size: 0.95rem; color: var(--ink); background: var(--surface-2); border: 1.5px solid var(--border); border-radius: 8px; padding: 12px 14px; overflow-wrap: anywhere; }
   .rich-editor:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
@@ -215,8 +224,8 @@
   .color-swatch { width: 26px; height: 26px; border-radius: 6px; border: 1.5px solid var(--border); cursor: pointer; padding: 0; }
   .color-swatch:hover { border-color: var(--ink-soft); }
 
-  .article-date { font-family: 'JetBrains Mono', ui-monospace, monospace; color: var(--ink-soft); font-size: 0.8rem; margin-bottom: 10px; }
-  .article-title { font-size: 1.9rem; margin-bottom: 12px; }
+  .article-date { font-family: 'JetBrains Mono', ui-monospace, monospace; color: var(--accent); font-size: 0.8rem; margin-bottom: 10px; }
+  .article-title { font-size: 1.9rem; line-height: 1.1; margin-bottom: 12px; }
   @media (max-width: 720px) { .article-title { line-height: 1.05; } }
   .article-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 24px; }
   .article-body { font-family: 'Inter', system-ui, sans-serif; font-size: 1.05rem; line-height: 1.55; }
@@ -285,6 +294,18 @@
 <div class="toast" id="toast"></div><script id="posts-data" type="application/json">
 [
   {
+    "title": "Nadšení opadlo. Přichází čas kritického pohledu na AI ve školách a fenomén \"AI Fatique\"",
+    "tags": [
+      "AI"
+    ],
+    "excerpt": "Únava z AI je logická fáze po \"hype\" období a velkých očekávání. Ve školství a vzdělávání to znamená, že musíme s umělou inteligencí pracovat mnohem střízlivěji, vědoměji a dlouhodoběji – ne jako s všemocným nástrojem, ale jako s nástrojem, který má limity.",
+    "content": "<p><span style=\"font-weight: bold\">Únava z AI je logická fáze po \"hype\" období a velkých očekávání. Ve školství a vzdělávání to znamená, že musíme s umělou inteligencí pracovat mnohem střízlivěji, vědoměji a dlouhodoběji – ne jako s všemocným nástrojem, ale jako s nástrojem, který má limity.<\/span><\/p><blockquote><span style=\"font-style: normal; color: rgb(20, 23, 26)\"><strong>AI fatigue<\/strong> = je stav kognitivního, emočního a motivačního vyčerpání způsobeného neustálým tlakem na používání AI nástrojů. Nejde o odpor k technologii jako takové, ale o přirozenou reakci na přehlcení, přepálená očekávání a neustálý proud novinek.<\/span><\/blockquote><h2>Kontext škol<\/h2><p><strong>Každý velký technologický trend projde cyklem fascinace, zahlcení a následné únavy<\/strong> – a to přesně zažíváme u AI. Ve chvíli, kdy se slibuje revoluce všeho a zázračné řešení problémů, tlak na učitele i žáky je obrovský a zákonitě přichází frustrace, když se ukáže, že realita je složitější.<\/p><p>Důležité je se školám a učitelům otevřeně přiznat, že <strong>AI není všemocná<\/strong> a že je naprosto v pořádku, když se cítí zahlcení nebo unavení z nekonečného proudu nových nástrojů. <strong>Nejde o selhání učitelů – jde o normální fázi vývoje technologie i systému.<\/strong><\/p><h2>Prepálená očekávání a učitelé<\/h2><p>Hype kolem AI – všude sliby, že AI rychle zefektivní práci, vyřeší kreativitu, ušetří čas a možná i nahradí část lidské práce. <strong>Když s tímto narativem přicházíme do škol, je téměř jisté, že narazíme na limity: chybovost, potřebu učit se nástroje, etiku, GDPR a čas, který učitelé ve skutečnosti nemají.<\/strong><\/p><ul><li><strong>Učitelé, kteří čekali zázračného asistenta, zažívají zklamání, když zjistí, že AI potřebuje zadání, kontrolu, korekci a dostatek času na naučení.<\/strong><\/li><li><strong>ICT metodici se ocitají v tlaku mezi musíme být moderní a učitelé nestíhají.<\/strong><\/li><li>Mnoho učitelů už má plné zuby toho, že je každé dva měsíce někdo přesvědčuje o další nutné platformě, funkci nebo nástroji.<\/li><\/ul><h2>\"AI fatigue\" ve školách<\/h2><p>AI fatigue je stav, kdy se původní nadšení mění v apatii, podráždění nebo rezignaci. Lidé jsou unavení z neustálého tlaku dělat vše chytřeji pomocí AI, zatímco mají reálné obavy o svou práci, soukromí a tempo změn.<\/p><p>Ve škole se to typicky projevuje takto:<\/p><ul><li><strong>Učitelé mají pocit, že zaostávají<\/strong>, pokud AI nepoužívají, a to zvyšuje stres místo podpory.<\/li><li>Žáci \"skáčou\" mezi novými aplikacemi a méně času věnují hlubšímu učení; <strong>AI někdy funguje spíš jako rozptýlení než jako podpora.<\/strong><\/li><li>Vedení škol cítí povinnost digitalizovat, ale naráží na nedostatek času, kapacit, peněz i jasné metodické opory.<\/li><\/ul><blockquote><span style=\"font-style: normal; color: rgb(20, 23, 26)\"><strong>Rozvoj AI je tak rychlý, že regulace i vzdělávací systémy ho objektivně nestíhají<\/strong>. Nemá smysl honit každý nový nástroj – daleko důležitější je učit principy, kritické myšlení, práci se zadáním, reflexi výstupů AI a didaktické scénáře.<\/span><\/blockquote><h2>Co s tím v praxi škol?<\/h2><ul><li>Pomáhat učitelům orientovat se v marketingovém hype – <strong>společně rozlišovat, co je realistické, co je experiment a co je čistý marketing.<\/strong><\/li><li><strong>Normalizovat únavu z AI<\/strong> – otevřeně říkat, že cítit odpor či únavu je normální reakce, ne důkaz digitální neschopnosti.<\/li><li><strong>Držet didaktický rámec<\/strong> – připomínat, že AI je jen nástroj; jádrem je učební cíl, hodnocení, vztah učitel–žák, bezpečné prostředí.<\/li><li><strong>Rozvíjet reflexi<\/strong> – učit učitele i žáky mluvit o limitech AI (bias, chyby, etika, dopady na práci) a tím snižovat frustraci ze slibů, které se nenaplní.<\/li><li><strong>Nastavovat realistická očekávání<\/strong> – místo slibu revoluce pracovat s konkrétními drobnými zlepšeními: jak si AI může vzít 20–30 minut přípravy týdně, ne celý vyučovací proces.<\/li><li><strong>Budovat podporu, ne tlak<\/strong> – nabízet konzultace, mentoring, komunitní sdílení, ne jen jednorázové povinné školení.<\/li><\/ul><p>Zpracováno na základě: <a href=\"https://www.wired.cz/clanky/prepalena-ocekavani-nas-dohnala-prichazi-masivni-unava-z-umele-inteligence\" target=\"_blank\" rel=\"noopener\">Přepálená očekávání nás dohnala. Přichází masivní únava z umělé inteligence<\/a> – WIRED.cz<\/p>",
+    "status": "published",
+    "createdAt": 1791104870926,
+    "updatedAt": 1791105740593,
+    "id": "pmutllfdas4x7xa"
+  },
+  {
     "title": "Jak by se měly děti učit s AI | Priya Lakhani | TED",
     "tags": [
       "AI",
@@ -294,9 +315,9 @@
       "Myšlenky"
     ],
     "excerpt": "TED talk představuje, jak by AI měla podporovat hluboké učení dětí (a dospělých) místo toho, aby jen nabízela rychlé odpovědi, a vysvětluje, proč je \"mentální námaha\" klíčová pro trvalé porozumění.",
-    "content": "<h2 style=\"color: rgb(31, 34, 37)\"><span>Proč současné vzdělávání selhává?<\/span><\/h2><p style=\"color: rgb(0, 0, 0)\"><span style=\"color: rgb(31, 34, 37)\"><span style=\"font-weight: bold\">Priya Lakhani<\/span> začíná tím, že zjistila, jak závažné jsou problémy i v bohatých systémech – <span style=\"background-color: rgb(253, 230, 138)\">v UK odchází asi 20% žáků ze střední školy bez dostatečných dovedností v čtení a psaní, přestože mají školy i kvalifikované učitele.<\/span>&nbsp;<\/span><\/p><p style=\"border: 2px solid rgb(47, 99, 235); padding: 12px 16px; border-radius: 10px\"><span style=\"font-weight: bold; color: rgb(47, 99, 235)\">Učitelé jsou přetížení: 74% z nich chce do tří let odejít zejména kvůli zátěži spojené s hodnocením a sledováním pokroku každého žáka – „učí ve dne, v noci jsou datoví analytici\".<\/span><\/p><p><a class=\"video-embed video-embed-fallback\" href=\"https://www.youtube.com/watch?v=YBH8rQv4aTQ\" target=\"_blank\" rel=\"noopener\"><span class=\"video-play-icon\">▶<\/span><span class=\"video-embed-label\">Přehrát video na YouTube<\/span><\/a><\/p><h2><span style=\"color: rgb(31, 34, 37); font-weight: 800\">Co může AI ve třídě dělat<\/span><\/h2><p style=\"color: rgb(0, 0, 0)\"><span style=\"color: rgb(31, 34, 37)\">Místo \"one-size-fits-all\" výuky navrhuje adaptivní systémy, které kombinují umělou inteligenci s neurovědami a didaktikou, aby pochopily, jak se učí každý jednotlivý žák. Její tým vyvinul platformu, kterou používají žáci ve více než 140 zemích a která na základě desítek miliard datových bodů dokáže personalizovat obsah a dávat učitelům srozumitelné, cílené přehledy o učení.<\/span><span><\/span><\/p><h2 style=\"color: rgb(0, 0, 0)\"><span style=\"color: rgb(31, 34, 37)\">Jak děti AI skutečně používají<\/span><\/h2><p style=\"color: rgb(0, 0, 0)\"><span style=\"color: rgb(31, 34, 37)\">Z uživatelské zpětné vazby ukazuje dva póly: někteří žáci AI chválí jako pomoc, která jim umožňuje dosáhnout dříve \"nemožného\", jiní ji nenávidí, protože je nutí dělat úkoly, a dokonce ji prosí o \"tlačítko na udělání práce za ně\". To odpovídá průzkumům, podle nichž přibližně pětina dětí přiznává, že používá generativní AI k tomu, aby udělala úkol úplně za ně - tedy k aktivnímu vyhýbání se učení.<\/span><span><\/span><\/p><h3 style=\"color: rgb(0, 0, 0)\"><span style=\"color: rgb(31, 34, 37)\">Iluze kompetence a \"zkratky\"<\/span><\/h3><p style=\"color: rgb(0, 0, 0)\"><span style=\"color: rgb(31, 34, 37)\">Při prvním použití nástrojů jako ChatGPT mají lidé pocit euforie a dojmu, že už nikdy nebudou muset \"opravdu pracovat\". Když se ale setkají s halucinacemi systému a chybami v praxi (například citovaný případ právníka v soudní síni), dochází k vystřízlivění a uvědomění, že krátké cesty nenahrazují vlastní myšlení - jen ho doplňují.<\/span><span><\/span><\/p>",
+    "content": "<h2 style=\"color: rgb(31, 34, 37)\"><span>Proč současné vzdělávání selhává?<\/span><\/h2><p style=\"color: rgb(0, 0, 0)\"><span style=\"color: rgb(31, 34, 37)\"><span style=\"font-weight: bold\">Priya Lakhani<\/span> začíná tím, že zjistila, jak závažné jsou problémy i v bohatých systémech – <span style=\"background-color: rgb(253, 230, 138)\">v UK odchází asi 20% žáků ze střední školy bez dostatečných dovedností v čtení a psaní, přestože mají školy i kvalifikované učitele.<\/span>&nbsp;<\/span><\/p><p style=\"border: 2px solid rgb(47, 99, 235); padding: 12px 16px; border-radius: 10px\"><span style=\"color: rgb(47, 99, 235)\">Učitelé jsou přetížení: 74% z nich chce do tří let odejít zejména kvůli zátěži spojené s hodnocením a sledováním pokroku každého žáka – „učí ve dne, v noci jsou datoví analytici\".<\/span><\/p><p><a class=\"video-embed video-embed-fallback\" href=\"https://www.youtube.com/watch?v=YBH8rQv4aTQ\" target=\"_blank\" rel=\"noopener\"><span class=\"video-play-icon\">▶<\/span><span class=\"video-embed-label\">Přehrát video na YouTube<\/span><\/a><\/p><h2><span style=\"color: rgb(31, 34, 37); font-weight: 800\">Co může AI ve třídě dělat<\/span><\/h2><p style=\"color: rgb(0, 0, 0)\"><span style=\"color: rgb(31, 34, 37)\">Místo \"one-size-fits-all\" výuky navrhuje adaptivní systémy, které kombinují umělou inteligenci s neurovědami a didaktikou, aby pochopily, jak se učí každý jednotlivý žák. Její tým vyvinul platformu, kterou používají žáci ve více než 140 zemích a která na základě desítek miliard datových bodů dokáže personalizovat obsah a dávat učitelům srozumitelné, cílené přehledy o učení.<\/span><span><\/span><\/p><h2 style=\"color: rgb(0, 0, 0)\"><span style=\"color: rgb(31, 34, 37)\">Jak děti AI skutečně používají<\/span><\/h2><p style=\"color: rgb(0, 0, 0)\"><span style=\"color: rgb(31, 34, 37)\">Z uživatelské zpětné vazby ukazuje dva póly: někteří žáci AI chválí jako pomoc, která jim umožňuje dosáhnout dříve \"nemožného\", jiní ji nenávidí, protože je nutí dělat úkoly, a dokonce ji prosí o \"tlačítko na udělání práce za ně\". To odpovídá průzkumům, podle nichž přibližně pětina dětí přiznává, že používá generativní AI k tomu, aby udělala úkol úplně za ně - tedy k aktivnímu vyhýbání se učení.<\/span><span><\/span><\/p><h3 style=\"color: rgb(0, 0, 0)\"><span style=\"color: rgb(31, 34, 37)\">Iluze kompetence a \"zkratky\"<\/span><\/h3><p style=\"color: rgb(0, 0, 0)\"><span style=\"color: rgb(31, 34, 37)\">Při prvním použití nástrojů jako ChatGPT mají lidé pocit euforie a dojmu, že už nikdy nebudou muset \"opravdu pracovat\". Když se ale setkají s halucinacemi systému a chybami v praxi (například citovaný případ právníka v soudní síni), dochází k vystřízlivění a uvědomění, že krátké cesty nenahrazují vlastní myšlení - jen ho doplňují.<\/span><span><\/span><\/p>",
     "status": "published",
-    "updatedAt": 1791055258645,
+    "updatedAt": 1791093981616,
     "id": "pmukyd87ygwr460",
     "createdAt": 1790582127838
   },
@@ -363,6 +384,7 @@
     line-height: 1.5;
   }
   .wrap { max-width: 1000px; margin: 0 auto; }
+  @media (max-width: 720px) { body { padding-inline: 12px; } }
 
   h1, h2, h3 { font-weight: 800; letter-spacing: -0.02em; text-wrap: balance; margin: 0; }
   .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
@@ -455,15 +477,16 @@
     transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
   .post-item:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(30, 60, 100, 0.12); }
+  .post-item:hover .post-title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
   @media (max-width: 720px) {
     .post-list { grid-template-columns: minmax(0, 1fr); }
     .post-item { padding: 24px 22px; }
   }
-  .post-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 16px; }
+  .post-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 12px; }
   .post-head-text { min-width: 0; }
-  .post-title { font-size: 1.25rem; font-weight: 700; line-height: 1.15; margin-bottom: 6px; overflow-wrap: anywhere; }
+  .post-title { font-size: 1.25rem; font-weight: 700; line-height: 1.15; margin-bottom: 12px; overflow-wrap: anywhere; }
   .post-meta { font-family: 'JetBrains Mono', ui-monospace, monospace; color: var(--accent); font-size: 0.78rem; }
-  .post-excerpt { font-family: 'Inter', system-ui, sans-serif; color: var(--ink); font-size: 0.95rem; line-height: 1.5; margin-bottom: 18px; overflow-wrap: anywhere; }
+  .post-excerpt { font-family: 'Inter', system-ui, sans-serif; color: var(--ink); font-size: 0.95rem; line-height: 1.5; margin-bottom: 18px; overflow-wrap: anywhere; white-space: pre-line; }
   .post-item .tag-row { margin-top: auto; }
   .tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
   .tag { font-size: 0.8rem; font-weight: 500; color: var(--chip-ink); background: var(--chip-bg); padding: 5px 12px; border-radius: 999px; }
@@ -489,8 +512,7 @@
     background: color-mix(in srgb, var(--bg) 85%, transparent);
     backdrop-filter: blur(2px);
     display: flex; justify-content: center;
-    padding: 32px 20px calc(32px + env(safe-area-inset-bottom, 0px));
-    padding-top: calc(32px + env(safe-area-inset-top, 0px));
+    padding: 0 20px calc(32px + env(safe-area-inset-bottom, 0px));
     overflow-y: auto;
     z-index: 10;
   }
@@ -501,6 +523,7 @@
     max-width: 720px;
     width: 100%;
     height: fit-content;
+    margin-top: calc(32px + env(safe-area-inset-top, 0px));
     padding: 28px;
     box-shadow: 0 12px 32px rgba(0,0,0,0.1);
   }
@@ -516,14 +539,21 @@
     border-radius: 8px;
     padding: 10px 12px;
   }
-  .field input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .field input:focus, .field textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .field textarea { font-family: 'Bricolage Grotesque', sans-serif; font-size: 0.95rem; line-height: 1.45; color: var(--ink); background: var(--surface-2); border: 1.5px solid var(--border); border-radius: 8px; padding: 10px 12px; min-height: 76px; resize: vertical; }
   .row { display: flex; gap: 10px; flex-wrap: wrap; }
   .row-end { display: flex; gap: 10px; justify-content: flex-end; margin-top: 8px; }
 
   .editor-toolbar { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; padding: 8px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; }
-  .toolbar-btn { font-family: inherit; font-size: 0.82rem; font-weight: 500; padding: 6px 10px; border-radius: 6px; border: 1px solid transparent; background: transparent; color: var(--ink); cursor: pointer; }
+  .toolbar-btn { font-family: inherit; font-size: 0.82rem; font-weight: 500; padding: 7px 10px; border-radius: 6px; border: 1px solid transparent; background: transparent; color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; line-height: 1; }
+  .toolbar-btn svg { width: 16px; height: 16px; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .toolbar-btn:hover { background: var(--bg); border-color: var(--border); }
   .toolbar-sep { width: 1px; background: var(--border); margin: 2px 4px; }
+  .editor-sticky { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); padding: 6px 0 2px; margin-bottom: 4px; }
+  .editor-sticky .editor-toolbar { margin-bottom: 8px; }
+  .link-popover textarea { flex: 1 1 100%; min-height: 120px; max-height: 40vh; resize: vertical; background: var(--surface-2); border: 1.5px solid var(--border); border-radius: 8px; padding: 10px 12px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.82rem; line-height: 1.5; color: var(--ink); }
+  .link-popover .md-hint { flex: 1 1 100%; font-size: 0.78rem; color: var(--ink-soft); }
+  @media (max-width: 720px) { .editor-sticky .editor-toolbar { flex-wrap: nowrap; overflow-x: auto; } .editor-sticky .toolbar-btn { flex: 0 0 auto; white-space: nowrap; } }
   .rich-editor-wrap { position: relative; }
   .rich-editor { min-height: 240px; line-height: 1.6; font-family: 'Bricolage Grotesque', sans-serif; font-size: 0.95rem; color: var(--ink); background: var(--surface-2); border: 1.5px solid var(--border); border-radius: 8px; padding: 12px 14px; overflow-wrap: anywhere; }
   .rich-editor:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
@@ -547,8 +577,8 @@
   .color-swatch { width: 26px; height: 26px; border-radius: 6px; border: 1.5px solid var(--border); cursor: pointer; padding: 0; }
   .color-swatch:hover { border-color: var(--ink-soft); }
 
-  .article-date { font-family: 'JetBrains Mono', ui-monospace, monospace; color: var(--ink-soft); font-size: 0.8rem; margin-bottom: 10px; }
-  .article-title { font-size: 1.9rem; margin-bottom: 12px; }
+  .article-date { font-family: 'JetBrains Mono', ui-monospace, monospace; color: var(--accent); font-size: 0.8rem; margin-bottom: 10px; }
+  .article-title { font-size: 1.9rem; line-height: 1.1; margin-bottom: 12px; }
   @media (max-width: 720px) { .article-title { line-height: 1.05; } }
   .article-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 24px; }
   .article-body { font-family: 'Inter', system-ui, sans-serif; font-size: 1.05rem; line-height: 1.55; }
@@ -1141,6 +1171,85 @@
     });
   }
 
+  function markdownToHtml(md) {
+    var lines = String(md || '').replace(/\r\n?/g, '\n').split('\n');
+    var out = [];
+    var i = 0, n = lines.length;
+    function inline(text) {
+      var stash = [];
+      function keep(html) { stash.push(html); return '\u0000' + (stash.length - 1) + '\u0000'; }
+      var t = escapeHtml(text);
+      t = t.replace(/`([^`]+)`/g, function (m, c) { return keep('<span style="background-color: #F1F2F4">' + c + '</span>'); });
+      t = t.replace(/!?\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, function (m, label, url) { return keep('<a href="' + url + '">' + label + '</a>'); });
+      t = t.replace(/(\*\*|__)(?=\S)([\s\S]*?\S)\1/g, '<strong>$2</strong>');
+      t = t.replace(/\*(?=\S)([^*]*?\S)\*/g, '<em>$1</em>');
+      t = t.replace(/(^|[\s(])_(?=\S)([^_]*?\S)_(?=$|[\s).,;:!?])/g, '$1<em>$2</em>');
+      return t.replace(/\u0000(\d+)\u0000/g, function (m, k) { return stash[+k]; });
+    }
+    var RE_FENCE = /^\s*```/, RE_HEAD = /^(#{1,6})\s+(.*?)\s*#*\s*$/, RE_HR = /^\s*([-*_])(\s*\1){2,}\s*$/,
+        RE_QUOTE = /^\s*>/, RE_UL = /^\s*[-*+]\s+/, RE_OL = /^\s*\d+[.)]\s+/;
+    function startsBlock(l) {
+      return RE_FENCE.test(l) || RE_HEAD.test(l) || RE_HR.test(l) || RE_QUOTE.test(l) || RE_UL.test(l) || RE_OL.test(l);
+    }
+    while (i < n) {
+      var line = lines[i];
+      if (/^\s*$/.test(line)) { i++; continue; }
+      var m;
+      if (RE_FENCE.test(line)) {
+        var code = [];
+        i++;
+        while (i < n && !RE_FENCE.test(lines[i])) { code.push(escapeHtml(lines[i])); i++; }
+        i++;
+        out.push('<p style="background-color: #F1F2F4; padding: 12px 16px; border-radius: 10px">' + code.join('<br>') + '</p>');
+      } else if ((m = RE_HEAD.exec(line))) {
+        out.push('<' + (m[1].length <= 2 ? 'h2' : 'h3') + '>' + inline(m[2]) + '</' + (m[1].length <= 2 ? 'h2' : 'h3') + '>');
+        i++;
+      } else if (RE_HR.test(line)) {
+        i++;
+      } else if (RE_QUOTE.test(line)) {
+        var q = [];
+        while (i < n && RE_QUOTE.test(lines[i])) { q.push(lines[i].replace(/^\s*>\s?/, '')); i++; }
+        out.push('<blockquote>' + inline(q.join(' ').trim()) + '</blockquote>');
+      } else if (RE_UL.test(line) || RE_OL.test(line)) {
+        var ordered = RE_OL.test(line);
+        var re = ordered ? RE_OL : RE_UL;
+        var items = [];
+        while (i < n) {
+          var l = lines[i];
+          if (re.test(l)) { items.push(l.replace(re, '')); i++; }
+          else if (/^\s*$/.test(l) && i + 1 < n && re.test(lines[i + 1])) { i++; }
+          else if (/^\s+\S/.test(l) && items.length && !RE_UL.test(l) && !RE_OL.test(l)) { items[items.length - 1] += ' ' + l.trim(); i++; }
+          else if (/^\s+(?:[-*+]|\d+[.)])\s+/.test(l) && items.length) { items.push(l.replace(/^\s+(?:[-*+]|\d+[.)])\s+/, '')); i++; }
+          else break;
+        }
+        var tag = ordered ? 'ol' : 'ul';
+        out.push('<' + tag + '>' + items.map(function (it) { return '<li>' + inline(it.trim()) + '</li>'; }).join('') + '</' + tag + '>');
+      } else {
+        var para = [];
+        while (i < n && !/^\s*$/.test(lines[i]) && (para.length === 0 || !startsBlock(lines[i]))) { para.push(lines[i].trim()); i++; }
+        out.push('<p>' + inline(para.join(' ')) + '</p>');
+      }
+    }
+    return out.join('');
+  }
+
+  var ICONS = {
+    ul: '<path d="M9 6h12M9 12h12M9 18h12"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/>',
+    ol: '<path d="M10 6h11M10 12h11M10 18h11M4 10h2M4 6h1v4M6 18H4c0-1 2-2 2-3s-1-1.5-2-1"/>',
+    quote: '<path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/>',
+    left: '<path d="M21 6H3M15 12H3M17 18H3"/>',
+    center: '<path d="M21 6H3M17 12H7M19 18H5"/>',
+    right: '<path d="M21 6H3M21 12H9M21 18H7"/>',
+    color: '<path d="M5 21h14"/><path d="M8 16l4-11 4 11M9.5 12.5h5"/>',
+    mark: '<path d="m9 11-6 6v3h9l3-3"/><path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4"/>',
+    box: '<rect x="3" y="5" width="18" height="14" rx="3"/><path d="M7 10h10M7 14h6"/>',
+    link: '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>',
+    image: '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>',
+    video: '<rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3z"/>',
+    md: '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/>'
+  };
+  function ico(name) { return '<svg viewBox="0 0 24 24" aria-hidden="true">' + ICONS[name] + '</svg>'; }
+
   function openEditor(existing) {
     if (!state.isAdmin) return;
     closeOverlay();
@@ -1153,8 +1262,9 @@
         '<div class="field"><label for="f-title">Titulek</label><input id="f-title" type="text" placeholder="Např. AI ve třídě: první zkušenosti" value="' + (existing ? escapeHtml(existing.title) : '') + '"></div>' +
         '<div class="field"><label for="f-tags">Štítky (odděl čárkou)</label><input id="f-tags" type="text" placeholder="Např. AI, LMS, poznámky" value="' + (existing ? escapeHtml((existing.tags || []).join(', ')) : '') + '"></div>' +
         '<div class="field"><label for="f-date">Datum zveřejnění</label><input id="f-date" type="date" value="' + toDateInput(existing ? existing.createdAt : Date.now()) + '"></div>' +
-        '<div class="field"><label for="f-excerpt">Perex (nepovinné)</label><input id="f-excerpt" type="text" placeholder="Krátké shrnutí — jinak se vygeneruje samo" value="' + (existing ? escapeHtml(existing.excerpt || '') : '') + '"></div>' +
+        '<div class="field"><label for="f-excerpt">Perex (nepovinné)</label><textarea id="f-excerpt" rows="3" placeholder="Krátké shrnutí — jinak se vygeneruje samo">' + (existing ? escapeHtml(existing.excerpt || '') : '') + '</textarea></div>' +
         '<div class="field"><label>Text článku</label>' +
+          '<div class="editor-sticky">' +
           '<div class="editor-toolbar">' +
             '<button type="button" class="toolbar-btn" data-cmd="bold" title="Tučně"><b>B</b></button>' +
             '<button type="button" class="toolbar-btn" data-cmd="italic" title="Kurzíva"><i>I</i></button>' +
@@ -1164,21 +1274,22 @@
             '<button type="button" class="toolbar-btn" data-block="H3" title="Nadpis 3">H3</button>' +
             '<button type="button" class="toolbar-btn" data-block="P" title="Normální text">Text</button>' +
             '<span class="toolbar-sep"></span>' +
-            '<button type="button" class="toolbar-btn" data-cmd="insertUnorderedList" title="Odrážky">• Seznam</button>' +
-            '<button type="button" class="toolbar-btn" data-cmd="insertOrderedList" title="Číslovaný seznam">1. Seznam</button>' +
-            '<button type="button" class="toolbar-btn" data-block="BLOCKQUOTE" title="Citace">❝ Citace</button>' +
+            '<button type="button" class="toolbar-btn" data-cmd="insertUnorderedList" title="Odrážky">' + ico('ul') + 'Seznam</button>' +
+            '<button type="button" class="toolbar-btn" data-cmd="insertOrderedList" title="Číslovaný seznam">' + ico('ol') + 'Číslovaný</button>' +
+            '<button type="button" class="toolbar-btn" data-block="BLOCKQUOTE" title="Citace">' + ico('quote') + 'Citace</button>' +
             '<span class="toolbar-sep"></span>' +
-            '<button type="button" class="toolbar-btn" data-cmd="justifyLeft" title="Zarovnat vlevo">Vlevo</button>' +
-            '<button type="button" class="toolbar-btn" data-cmd="justifyCenter" title="Na střed">Střed</button>' +
-            '<button type="button" class="toolbar-btn" data-cmd="justifyRight" title="Zarovnat vpravo">Vpravo</button>' +
+            '<button type="button" class="toolbar-btn" data-cmd="justifyLeft" title="Zarovnat vlevo" aria-label="Zarovnat vlevo">' + ico('left') + '</button>' +
+            '<button type="button" class="toolbar-btn" data-cmd="justifyCenter" title="Na střed" aria-label="Na střed">' + ico('center') + '</button>' +
+            '<button type="button" class="toolbar-btn" data-cmd="justifyRight" title="Zarovnat vpravo" aria-label="Zarovnat vpravo">' + ico('right') + '</button>' +
             '<span class="toolbar-sep"></span>' +
-            '<button type="button" class="toolbar-btn" id="text-color-btn" title="Barva textu">Barva textu</button>' +
-            '<button type="button" class="toolbar-btn" id="highlight-color-btn" title="Podbarvení textu">Podbarvení</button>' +
-            '<button type="button" class="toolbar-btn" id="box-btn" title="Barevný rámeček odstavce">Rámeček</button>' +
+            '<button type="button" class="toolbar-btn" id="text-color-btn" title="Barva textu">' + ico('color') + 'Barva</button>' +
+            '<button type="button" class="toolbar-btn" id="highlight-color-btn" title="Podbarvení textu">' + ico('mark') + 'Zvýraznit</button>' +
+            '<button type="button" class="toolbar-btn" id="box-btn" title="Barevný rámeček odstavce">' + ico('box') + 'Rámeček</button>' +
             '<span class="toolbar-sep"></span>' +
-            '<button type="button" class="toolbar-btn" id="link-btn" title="Vložit odkaz">Odkaz</button>' +
-            '<button type="button" class="toolbar-btn" id="image-btn" title="Vložit obrázek">Obrázek</button>' +
-            '<button type="button" class="toolbar-btn" id="video-btn" title="Vložit YouTube video">▶ YouTube</button>' +
+            '<button type="button" class="toolbar-btn" id="link-btn" title="Vložit odkaz">' + ico('link') + 'Odkaz</button>' +
+            '<button type="button" class="toolbar-btn" id="image-btn" title="Vložit obrázek">' + ico('image') + 'Obrázek</button>' +
+            '<button type="button" class="toolbar-btn" id="video-btn" title="Vložit YouTube video">' + ico('video') + 'YouTube</button>' +
+            '<button type="button" class="toolbar-btn" id="md-btn" title="Vložit text ve formátu Markdown">' + ico('md') + 'Markdown</button>' +
             '<input type="file" accept="image/*" id="image-file-input" hidden>' +
           '</div>' +
           '<div class="link-popover" id="link-popover" hidden>' +
@@ -1193,7 +1304,14 @@
           '</div>' +
           '<div class="color-popover" id="text-color-popover" hidden>' + colorSwatchesHtml(TEXT_COLORS, 'text') + '</div>' +
           '<div class="color-popover" id="highlight-color-popover" hidden>' + colorSwatchesHtml(HIGHLIGHT_COLORS, 'highlight') + '</div>' +
+          '<div class="link-popover" id="md-popover" hidden>' +
+            '<textarea id="md-input" placeholder="Vlož sem text v Markdownu…"></textarea>' +
+            '<span class="md-hint">Podporováno: # nadpisy, **tučně**, *kurzíva*, [odkaz](https://…), seznamy, &gt; citace, `kód`. Tabulky a obrázky ne.</span>' +
+            '<button type="button" class="btn btn-ghost" id="md-cancel">Zrušit</button>' +
+            '<button type="button" class="btn btn-primary" id="md-apply">Vložit do článku</button>' +
+          '</div>' +
           '<div class="color-popover" id="box-popover" hidden>' + colorSwatchesHtml(BOX_COLORS, 'box') + '</div>' +
+          '</div>' +
           '<div class="rich-editor-wrap">' +
             '<div class="rich-editor" id="f-content" contenteditable="true"></div>' +
             '<span class="rich-editor-placeholder" id="f-content-placeholder">Piš text článku…</span>' +
@@ -1213,6 +1331,12 @@
     var linkUrlInput = document.getElementById('link-url-input');
     var videoPopover = document.getElementById('video-popover');
     var videoUrlInput = document.getElementById('video-url-input');
+    var excerptEl = document.getElementById('f-excerpt');
+    function growExcerpt() { excerptEl.style.height = 'auto'; excerptEl.style.height = Math.max(76, excerptEl.scrollHeight + 3) + 'px'; }
+    excerptEl.addEventListener('input', growExcerpt);
+    growExcerpt();
+    var mdPopover = document.getElementById('md-popover');
+    var mdInput = document.getElementById('md-input');
     var savedRange = null;
 
     try { document.execCommand('defaultParagraphSeparator', false, 'p'); } catch (e) {}
@@ -1251,6 +1375,7 @@
       highlightColorPopover.hidden = true;
       videoPopover.hidden = true;
       boxPopover.hidden = true;
+      mdPopover.hidden = true;
       linkPopover.hidden = false;
       linkUrlInput.focus();
     };
@@ -1279,6 +1404,7 @@
       highlightColorPopover.hidden = true;
       videoPopover.hidden = true;
       boxPopover.hidden = true;
+      mdPopover.hidden = true;
     }
 
     document.getElementById('text-color-btn').onclick = function () {
@@ -1396,6 +1522,7 @@
       textColorPopover.hidden = true;
       highlightColorPopover.hidden = true;
       boxPopover.hidden = true;
+      mdPopover.hidden = true;
       videoPopover.hidden = false;
       videoUrlInput.focus();
     };
@@ -1422,6 +1549,34 @@
         applyBtn.textContent = 'Vložit';
       }
       fetchYouTubeThumbDataUrl(vid).then(insertEmbed).catch(function () { insertEmbed(null); });
+    };
+
+    document.getElementById('md-btn').onclick = function () {
+      var sel = window.getSelection();
+      savedRange = (sel.rangeCount > 0 && contentEl.contains(sel.anchorNode)) ? sel.getRangeAt(0).cloneRange() : null;
+      hidePopovers();
+      mdInput.value = '';
+      mdPopover.hidden = false;
+      mdInput.focus();
+    };
+    document.getElementById('md-cancel').onclick = function () { mdPopover.hidden = true; };
+    document.getElementById('md-apply').onclick = function () {
+      var html = sanitizeHtml(markdownToHtml(mdInput.value));
+      if (!html) { showToast('Vlož nejdřív nějaký text.'); return; }
+      contentEl.focus();
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      if (savedRange) {
+        sel.addRange(savedRange);
+      } else {
+        var endRange = document.createRange();
+        endRange.selectNodeContents(contentEl);
+        endRange.collapse(false);
+        sel.addRange(endRange);
+      }
+      document.execCommand('insertHTML', false, html);
+      mdPopover.hidden = true;
+      updatePlaceholder();
     };
 
     document.getElementById('cancel-edit').onclick = function () { closeOverlay(); };
